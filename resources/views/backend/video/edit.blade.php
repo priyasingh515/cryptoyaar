@@ -18,12 +18,17 @@
                     <div class="card-body">
                         <div class="row">
 
+                            {{-- TITLE --}}
                             <div class="mb-3 col-md-6">
                                 <label>Video Title</label>
-                                <input type="text" name="title" class="form-control"
-                                       value="{{ $video->title }}" required>
+                                <input type="text"
+                                       name="title"
+                                       class="form-control"
+                                       value="{{ $video->title }}"
+                                       required>
                             </div>
 
+                            {{-- CATEGORY --}}
                             <div class="mb-3 col-md-6">
                                 <label>Category</label>
                                 <select name="category_id" class="form-control" required>
@@ -36,16 +41,21 @@
                                 </select>
                             </div>
 
+                            {{-- DESCRIPTION --}}
                             <div class="mb-3 col-md-12">
                                 <label>Description</label>
-                                <textarea name="description" class="form-control">{{ $video->description }}</textarea>
+                                <textarea name="description"
+                                          class="form-control"
+                                          rows="3">{{ $video->description }}</textarea>
                             </div>
 
+                            {{-- REPLACE VIDEO --}}
                             <div class="mb-3 col-md-6">
                                 <label>Replace Video</label>
                                 <input type="file" name="video" class="form-control">
                             </div>
 
+                            {{-- VIDEO TYPE --}}
                             <div class="mb-3 col-md-6">
                                 <label>Video Type</label>
                                 <select name="is_free" id="is_free" class="form-control">
@@ -54,7 +64,9 @@
                                 </select>
                             </div>
 
-                            <div class="mb-3 col-md-6" id="planBox"
+                            {{-- PLAN --}}
+                            <div class="mb-3 col-md-6"
+                                 id="planBox"
                                  style="{{ $video->is_free ? 'display:none;' : '' }}">
                                 <label>Subscription Plan</label>
                                 <select name="plan_id" class="form-control">
@@ -65,6 +77,30 @@
                                         </option>
                                     @endforeach
                                 </select>
+                            </div>
+
+                            {{-- STATUS TOGGLE --}}
+                            <div class="mb-3 col-md-6">
+                                <label class="d-block">Video Status</label>
+
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input"
+                                           type="checkbox"
+                                           id="statusToggle"
+                                           {{ $video->status ? 'checked' : '' }}>
+
+                                    <label class="form-check-label" for="statusToggle">
+                                        <span id="statusText">
+                                            {{ $video->status ? 'Active' : 'Inactive' }}
+                                        </span>
+                                    </label>
+                                </div>
+
+                                {{-- hidden input for form submit --}}
+                                <input type="hidden"
+                                       name="status"
+                                       id="statusInput"
+                                       value="{{ $video->status }}">
                             </div>
 
                         </div>
@@ -81,29 +117,55 @@
     </div>
 </div>
 
+{{-- UPLOAD MODAL --}}
 <div class="modal fade" id="uploadModal" tabindex="-1" data-bs-backdrop="static">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content text-center p-4">
 
-            <div id="statusIcon" style="font-size:48px; display:none;" class="text-success">✔</div>
+            <div id="statusIcon"
+                 style="font-size:48px; display:none;"
+                 class="text-success">✔</div>
 
             <h5 class="mb-2" id="uploadStatus">Updating...</h5>
 
-            <div style="font-size:28px;font-weight:600;" id="uploadPercent">0%</div>
+            <div style="font-size:28px;font-weight:600;"
+                 id="uploadPercent">0%</div>
 
             <div class="progress mt-3" style="height:8px;">
-                <div class="progress-bar" id="uploadBar" style="width:0%"></div>
+                <div class="progress-bar"
+                     id="uploadBar"
+                     style="width:0%"></div>
             </div>
 
         </div>
     </div>
 </div>
 
+{{-- SCRIPT --}}
 <script>
+
+// FREE / PAID TOGGLE
 document.getElementById('is_free').addEventListener('change', function () {
-    document.getElementById('planBox').style.display = this.value == 0 ? 'block' : 'none';
+    document.getElementById('planBox').style.display =
+        this.value == 0 ? 'block' : 'none';
 });
 
+// STATUS TOGGLE
+let statusToggle = document.getElementById('statusToggle');
+let statusInput  = document.getElementById('statusInput');
+let statusText   = document.getElementById('statusText');
+
+statusToggle.addEventListener('change', function () {
+    if (this.checked) {
+        statusInput.value = 1;
+        statusText.innerText = 'Active';
+    } else {
+        statusInput.value = 0;
+        statusText.innerText = 'Inactive';
+    }
+});
+
+// FORM SUBMIT WITH PROGRESS
 document.getElementById('videoUpdateForm').addEventListener('submit', function (e) {
     e.preventDefault();
 
@@ -133,6 +195,7 @@ document.getElementById('videoUpdateForm').addEventListener('submit', function (
             percent.style.display = 'none';
             bar.style.display = 'none';
             icon.style.display = 'block';
+
             setTimeout(() => {
                 window.location.href = "{{ route('admin.videos.index') }}";
             }, 900);

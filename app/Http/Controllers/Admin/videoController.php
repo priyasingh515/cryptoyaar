@@ -87,7 +87,7 @@ class VideoController extends Controller
             'category_id' => $request->category_id,
             'plan_id'     => $request->is_free ? null : $request->plan_id,
             'is_free'     => $request->is_free,
-            'status'      => $request->has('status') ? 1 : 0,
+            'status'      => $request->status,
         ]);
 
         return redirect()->route('admin.videos.index')->with('success', 'Video updated successfully');
