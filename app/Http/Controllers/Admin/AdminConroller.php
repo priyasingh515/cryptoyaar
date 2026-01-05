@@ -7,6 +7,8 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Admin;
+use App\Models\CommentModel;
+use App\Models\VideoModel;
 
 class AdminConroller extends Controller
 {
@@ -17,4 +19,12 @@ class AdminConroller extends Controller
         $totalStaff = Admin::Where('role_id','3')->count();
         return view('backend.dashboard',compact('totalUsers','totalCategory','totalStaff'));
     }
+
+    
+public function likeTest()
+{
+    $videos = VideoModel::all();
+    $comment = CommentModel::all();
+    return view('backend.video.like-test', compact('videos'));
+}
 }

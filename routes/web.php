@@ -7,9 +7,10 @@ use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\PlanController;
-
+use App\Http\Controllers\Admin\VideoController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
-
+use App\Http\Controllers\LikeController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -72,6 +73,31 @@ Route::prefix('admin')->group(function () {
         Route::put('plans/{plan}/update', [PlanController::class, 'update'])->name('plan.update');
         Route::delete('plans/{id}', [PlanController::class, 'destroy'])
             ->name('plan.destroy');
+
+        // Video's
+        Route::get('/videos', [VideoController::class, 'index'])->name('admin.videos.index');
+        Route::get('/videos/create', [VideoController::class, 'create'])->name('admin.videos.create');
+        Route::post('/videos/store', [VideoController::class, 'store'])->name('admin.videos.store');
+        Route::get('/videos/{id}/edit', [VideoController::class, 'edit'])->name('admin.videos.edit');
+        Route::put('/videos/{id}/update', [VideoController::class, 'update'])->name('admin.videos.update');
+        Route::delete('/videos/{id}/delete', [VideoController::class, 'destroy'])->name('admin.videos.destroy');
+      
+        // likes
+        Route::post('/videos/{videoId}/like', [LikeController::class, 'toggle'])
+     ->name('admin.video.like');
+
+     Route::get('/videos/like-test', [AdminConroller::class, 'likeTest'])
+     ->name('videos.like.test');
+
+    //  comment 
+    Route::post('/comments/store', [CommentController::class, 'store'])
+    ->name('admin.comments.store');
+
+Route::get('/videos/{videoId}/comments', [CommentController::class, 'index'])
+    ->name('admin.comments.index');
+
+
+
 
 
 

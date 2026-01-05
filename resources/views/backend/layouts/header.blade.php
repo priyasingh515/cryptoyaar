@@ -161,6 +161,7 @@
             $PermissionActive = request()->is('admin/permissions*');
             $memberActive = request()->is('admin/members*');
             $planActive = request()->is('admin/plans*');
+            $videoActive = request()->is('admin/videos*');
             $categoryActive = request()->is('admin/category*');
         @endphp
 
@@ -235,7 +236,7 @@
 
                                     @if (auth('admin')->user()->hasPermission('view-plan'))
                                         <li>
-                                            <a href="{{ route('plan.index')}}"
+                                            <a href="{{ route('plan.index') }}"
                                                 class="{{ request()->routeIs('plans.index') ? 'active' : '' }}">
                                                 Plan List
                                             </a>
@@ -246,6 +247,53 @@
                             </li>
 
                         @endif
+
+                        @if (auth('admin')->user()->hasPermission('create-video') || auth('admin')->user()->hasPermission('view-video'))
+
+                            @php
+                                $videoActive = request()->routeIs('admin.videos.*');
+                            @endphp
+
+                            <li class="{{ $videoActive ? 'mm-active' : '' }}">
+                                <a href="javascript:void(0);"
+                                    class="has-arrow waves-effect {{ $videoActive ? 'mm-active' : '' }}">
+                                    <i class="bx bx-video"></i>
+                                    <span>Videos</span>
+                                </a>
+
+                                <ul class="sub-menu {{ $videoActive ? 'mm-show' : '' }}">
+
+                                    @if (auth('admin')->user()->hasPermission('create-video'))
+                                        <li>
+                                            <a href="{{ route('admin.videos.create') }}"
+                                                class="{{ request()->routeIs('admin.videos.create') ? 'active' : '' }}">
+                                                Add Video
+                                            </a>
+                                        </li>
+                                    @endif
+
+                                    @if (auth('admin')->user()->hasPermission('view-video'))
+                                        <li>
+                                            <a href="{{ route('admin.videos.index') }}"
+                                                class="{{ request()->routeIs('admin.videos.index') ? 'active' : '' }}">
+                                                Video List
+                                            </a>
+                                        </li>
+                                    @endif
+
+                                       @if (auth('admin')->user()->hasPermission('test-video'))
+                                        <li>
+                                            <a href="{{ route('videos.like.test') }}"
+                                                class="{{ request()->routeIs('admin.videos.test-blade') ? 'active' : '' }}">
+                                                like test
+                                            </a>
+                                        </li>
+                                    @endif
+
+                                </ul>
+                            </li>
+                        @endif
+
 
 
                         @if (auth('admin')->user()->hasPermission('create-category') || auth('admin')->user()->hasPermission('view-category'))
