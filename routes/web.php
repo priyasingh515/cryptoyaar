@@ -6,15 +6,11 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\CategoryController;
-<<<<<<< Updated upstream
 use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Admin\VideoController;
 use App\Http\Controllers\CommentController;
-=======
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\SupersubCategory;
-
->>>>>>> Stashed changes
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LikeController;
 use Illuminate\Support\Facades\Route;
@@ -90,23 +86,17 @@ Route::prefix('admin')->group(function () {
       
         // likes
         Route::post('/videos/{videoId}/like', [LikeController::class, 'toggle'])
-     ->name('admin.video.like');
+            ->name('admin.video.like');
 
-     Route::get('/videos/like-test', [AdminConroller::class, 'likeTest'])
-     ->name('videos.like.test');
+        Route::get('/videos/like-test', [AdminConroller::class, 'likeTest'])
+        ->name('videos.like.test');
 
-    //  comment 
-    Route::post('/comments/store', [CommentController::class, 'store'])
-    ->name('admin.comments.store');
+        //  comment 
+        Route::post('/comments/store', [CommentController::class, 'store'])
+        ->name('admin.comments.store');
 
-Route::get('/videos/{videoId}/comments', [CommentController::class, 'index'])
-    ->name('admin.comments.index');
-
-
-
-
-
-
+        Route::get('/videos/{videoId}/comments', [CommentController::class, 'index'])
+            ->name('admin.comments.index');
 
         //Category
         Route::get('category', [CategoryController::class, 'index'])->name('category.index');
@@ -116,13 +106,13 @@ Route::get('/videos/{videoId}/comments', [CommentController::class, 'index'])
         Route::get('category/{slug}/edit', [CategoryController::class, 'edit'])->name('category.edit');
         Route::post('category/{id}/update', [CategoryController::class, 'update'])->name('category.update');
         Route::delete('category/{id}/destroy', [CategoryController::class, 'destroy'])->name('category.destroy');
-<<<<<<< Updated upstream
-=======
+
   
         //subCategory
         Route::get('subcategory', [SubCategoryController::class, 'index'])->name('subcategory.index');
         Route::get('subcategory/create', [SubCategoryController::class, 'create'])->name('subcategory.create');
         Route::post('subcategory/store', [SubCategoryController::class, 'store'])->name('subcategory.store');
+
 
         Route::get('subcategory/{slug}/edit', [SubCategoryController::class, 'edit'])->name('subcategory.edit');
         Route::post('subcategory/{id}/update', [SubCategoryController::class, 'update'])->name('subcategory.update');
@@ -137,9 +127,18 @@ Route::get('/videos/{videoId}/comments', [CommentController::class, 'index'])
         Route::post('supersubcategory/{id}/update', [SupersubCategory::class, 'update'])->name('supersubcategory.update');
         Route::delete('supersubcategory/{id}/destroy', [SupersubCategory::class, 'destroy'])->name('supersubcategory.destroy');
   
-         
 
+        Route::get('subcategory/{slug}/edit', [SubCategoryController::class, 'edit'])->name('subcategory.edit');
+        Route::post('subcategory/{id}/update', [SubCategoryController::class, 'update'])->name('subcategory.update');
+        Route::delete('subcategory/{id}/destroy', [SubCategoryController::class, 'destroy'])->name('subcategory.destroy');
+  
+        //supersubCategory
+        Route::get('supersubcategory', [SupersubCategory::class, 'index'])->name('supersubcategory.index');
+        Route::get('supersubcategory/create', [SupersubCategory::class, 'create'])->name('supersubcategory.create');
+        Route::post('supersubcategory/store', [SupersubCategory::class, 'store'])->name('supersubcategory.store');
 
->>>>>>> Stashed changes
+        Route::get('supersubcategory/{slug}/edit', [SupersubCategory::class, 'edit'])->name('supersubcategory.edit');
+        Route::post('supersubcategory/{id}/update', [SupersubCategory::class, 'update'])->name('supersubcategory.update');
+
     });
 });
