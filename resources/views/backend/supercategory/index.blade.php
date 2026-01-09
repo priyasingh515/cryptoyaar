@@ -8,12 +8,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0 font-size-18">Category Section</h4>
+                        <h4 class="mb-sm-0 font-size-18">Super Sub Category Section</h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 {{-- <li class="breadcrumb-item"><a href="javascript: void(0);">Tables</a></li> --}}
-                                <li class="breadcrumb-item active">Category List</li>
+                                <li class="breadcrumb-item active">Super Sub Category List</li>
                             </ol>
                         </div>
 
@@ -26,37 +26,37 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Category List</h4>
+                            <h4 class="card-title">Super Sub Category List</h4>
                             <table id="datatable" class="table table-bordered dt-responsive w-100">
                                 <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Category</th>
+                                    <th>#</th>
+                                    <th>Main Category</th>
+                                    <th>Sub Category</th>
+                                    <th>Super Sub Category</th>
                                     <th>Slug</th>
-                                    <th>Order</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
 
                                 <tbody>
-                                    @foreach ($categories as $item)
+                                    @foreach ($superSubCategories as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-
-                                        {{-- CATEGORY (Top Level Parent ka naam) --}}
                                         <td>
-                                            @if($item->parent_id === null)
-                                                {{ $item->name }}
-                                            @elseif(optional($item->parent)->parent_id === null)
-                                                {{ optional($item->parent)->name }}
-                                            @else
-                                                {{ optional(optional($item->parent)->parent)->name }}
-                                            @endif
+                                            {{ $item->subCategory->category->name ?? '-' }}
+                                        </td>
+
+                                        <td>
+                                            {{ $item->subCategory->name ?? '-' }}
+                                        </td>
+
+                                        <td>
+                                            {{ $item->name }}
                                         </td>
 
                                         <td>{{ $item->slug }}</td>
-                                        <td>{{ $item->order }}</td>
 
                                         <td>
                                             <span class="badge {{ $item->status ? 'bg-success' : 'bg-danger' }}">
@@ -65,7 +65,7 @@
                                         </td>
 
                                         <td>
-                                            <a href="{{ route('category.edit', $item->slug) }}"
+                                            <a href="{{ route('supersubcategory.edit', $item->slug) }}"
                                             class="btn btn-sm btn-warning">Edit</a>
 
                                             <button type="button"
@@ -75,7 +75,7 @@
                                             </button>
 
                                             <form id="delete-form-{{ $item->id }}"
-                                                action="{{ route('category.destroy', $item->id) }}"
+                                                action="{{ route('supersubcategory.destroy', $item->id) }}"
                                                 method="POST" style="display:none;">
                                                 @csrf
                                                 @method('DELETE')

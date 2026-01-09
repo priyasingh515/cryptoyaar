@@ -10036,7 +10036,7 @@ body .ms-header-menu .menu li .sub-menu li a {
         width: 49%;
     }
     .ms-banner-wrapper {
-        margin-top: 25px;
+        /* margin-top: 25px; */
     }
     .ms-breadcrumb-wrapper {
         padding: 35px 0;

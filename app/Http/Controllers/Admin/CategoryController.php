@@ -39,6 +39,7 @@ class CategoryController extends Controller
             ->with('success', 'Category added successfully');
     }
 
+
     public function edit($slug){
         $category = Category::where('slug', $slug)->firstOrFail();
         return view('backend.category.edit',compact('category'));

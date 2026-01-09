@@ -1,0 +1,24 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class SupCategory extends Model
+{
+    use HasFactory;
+    protected $table = 'sub_categories';
+    protected $fillable = [
+        'category_id',
+        'name',
+        'slug',
+        'status',
+        'order'
+    ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+}

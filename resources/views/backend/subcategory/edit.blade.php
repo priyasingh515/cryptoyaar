@@ -27,42 +27,38 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <form action="{{ route('category.store') }}" method="post">
+                        <form action="{{ route('subcategory.update',$subCategory->id) }}" method="post">
                             @csrf
 
                             <div class="card-body">
                                 <div class="row">
 
-                                    <div class="col-sm-6">
-                                        <label class="form-label">Category Name</label>
-                                        <input class="form-control"
-                                            name="name"
-                                            type="text"
-                                            placeholder="Enter Category name"
-                                            value="{{ old('name') }}">
-
-                                        @error('name')
-                                            <div class="text-danger mt-1">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-
-                                    
-                                    <div class="col-sm-3">
-                                        <label class="form-label">Status</label>
-                                        <select name="status" class="form-control">
-                                            <option value="1">Active</option>
-                                            <option value="0">Inactive</option>
+                                    <div class="col-sm-4">
+                                        <label>Main Category</label>
+                                        <select name="category_id" class="form-control">
+                                            @foreach($categories as $cat)
+                                                <option value="{{ $cat->id }}"
+                                                    {{ $subCategory->category_id == $cat->id ? 'selected' : '' }}>
+                                                    {{ $cat->name }}
+                                                </option>
+                                            @endforeach
                                         </select>
+                                    </div>
 
-                                        @error('status')
-                                            <div class="text-danger mt-1">{{ $message }}</div>
-                                        @enderror
+                                    <div class="col-sm-6">
+                                        <label>Sub Category Name</label>
+                                        <input type="text"
+                                            name="name"
+                                            class="form-control"
+                                            value="{{ $subCategory->name }}">
                                     </div>
 
                                     <div class="col-sm-3">
-                                        <label class="form-label">Order</label>
-                                        <input type="number" name="order" class="form-control"
-                                            value="{{ old('order', 0) }}">
+                                        <label>Status</label>
+                                        <select name="status" class="form-control">
+                                            <option value="1" {{ $subCategory->status ? 'selected' : '' }}>Active</option>
+                                            <option value="0" {{ !$subCategory->status ? 'selected' : '' }}>Inactive</option>
+                                        </select>
                                     </div>
 
                                 </div>

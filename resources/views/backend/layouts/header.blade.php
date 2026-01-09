@@ -156,6 +156,7 @@
             </div>
         </header>
 
+<<<<<<< Updated upstream
         @php
             $roleActive = request()->is('admin/roles*');
             $PermissionActive = request()->is('admin/permissions*');
@@ -164,6 +165,16 @@
             $videoActive = request()->is('admin/videos*');
             $categoryActive = request()->is('admin/category*');
         @endphp
+=======
+            @php
+                $roleActive = request()->is('admin/roles*');
+                $PermissionActive = request()->is('admin/permissions*');
+                $memberActive = request()->is('admin/members*');
+                $categoryActive = request()->is('admin/category*');
+                $subcategoryActive = request()->is('admin/subcategory*');
+                $supersubcategoryActive = request()->is('admin/supersubcategory*');
+            @endphp
+>>>>>>> Stashed changes
 
         <!-- ========== Left Sidebar Start ========== -->
         <div class="vertical-menu">
@@ -327,7 +338,70 @@
                             </li>
                         @endif
 
+<<<<<<< Updated upstream
                         @if (auth('admin')->user()->hasPermission('create-role') || auth('admin')->user()->hasPermission('view-role'))
+=======
+                            @if(auth('admin')->user()->hasPermission('create-category') ||auth('admin')->user()->hasPermission('view-category'))
+
+                                <li class="{{ $subcategoryActive ? 'mm-active' : '' }}">
+                                    <a href="javascript:void(0);" class="has-arrow waves-effect {{ $subcategoryActive ? 'mm-active' : '' }}">
+                                        <i class="bx bx-user"></i>
+                                        <span>SubCategory</span>
+                                    </a>
+                                    <ul class="sub-menu {{ $subcategoryActive ? 'mm-show' : '' }}">
+
+                                        @if(auth('admin')->user()->hasPermission('create-category'))
+                                        <li>
+                                            <a href="{{ route('subcategory.create') }}"
+                                                class="{{ request()->routeIs('subcategory.create') ? 'active' : '' }}">
+                                                Add Sub Category
+                                            </a>
+                                        </li>
+                                        @endif
+
+                                        @if(auth('admin')->user()->hasPermission('view-category'))
+                                        <li>
+                                            <a href="{{ route('subcategory.index') }}"
+                                            class="{{ request()->routeIs('subcategory.index') ? 'active' : '' }}">
+                                               Sub Category List
+                                            </a>
+                                        </li>
+                                        @endif
+                                    </ul>
+                                </li>
+                            @endif
+                            @if(auth('admin')->user()->hasPermission('create-category') ||auth('admin')->user()->hasPermission('view-category'))
+
+                                <li class="{{ $supersubcategoryActive ? 'mm-active' : '' }}">
+                                    <a href="javascript:void(0);" class="has-arrow waves-effect {{ $supersubcategoryActive ? 'mm-active' : '' }}">
+                                        <i class="bx bx-user"></i>
+                                        <span>Super SubCategory</span>
+                                    </a>
+                                    <ul class="sub-menu {{ $supersubcategoryActive ? 'mm-show' : '' }}">
+
+                                        @if(auth('admin')->user()->hasPermission('create-category'))
+                                        <li>
+                                            <a href="{{ route('supersubcategory.create') }}"
+                                                class="{{ request()->routeIs('supersubcategory.create') ? 'active' : '' }}">
+                                                Add Super Sub Category
+                                            </a>
+                                        </li>
+                                        @endif
+
+                                        @if(auth('admin')->user()->hasPermission('view-category'))
+                                        <li>
+                                            <a href="{{ route('supersubcategory.index') }}"
+                                            class="{{ request()->routeIs('supersubcategory.index') ? 'active' : '' }}">
+                                               Sub Super Category List
+                                            </a>
+                                        </li>
+                                        @endif
+                                    </ul>
+                                </li>
+                            @endif
+
+                            @if(auth('admin')->user()->hasPermission('create-role') ||auth('admin')->user()->hasPermission('view-role'))
+>>>>>>> Stashed changes
 
                             <li class="{{ $roleActive ? 'mm-active' : '' }}">
                                 <a href="javascript:void(0);"

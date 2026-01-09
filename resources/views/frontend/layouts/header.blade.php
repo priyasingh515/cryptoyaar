@@ -1422,8 +1422,19 @@
 	</noscript>
 
 	<style>
-		@media (max-width: 768px) {
 
+		@media (max-width: 576px) {
+			.ms-banner-wrapper {
+				min-height: auto;
+				padding-bottom: 40px;
+			}
+
+			.vc_column-inner {
+				height: auto !important;
+			}
+		}
+
+		@media (max-width: 768px) {
 			.ms-banner-inner{
 				position: absolute;
 				top: 50%;
@@ -1455,13 +1466,16 @@
 				display: none;
 			}
 
+
 			}
 
 			@media (max-width: 768px) {
-			.ms-header-logo img {
-				max-height: 40px;
-				margin-right: 200px
-			}
+				.ms-header-logo img {
+					max-height: 40px;
+					margin-right: 200px
+				}
+
+				
 			}
 
 
@@ -1531,33 +1545,33 @@
 						<div class="ms-header-menu">
 							<div class="menu-main_menu-container">
 								<ul id="videospire-menu" class="menu">
-									<li id="menu-item-1352"
-										class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-1143 current_page_item menu-item-1352">
-										<a href="/"
-											aria-current="page" title="Home" class="menu-image-title-after"><span
-												class="menu-image-title">Home</span></a></li>
-									
-									<li id="menu-item-1350"
-										class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1350">
-										<a href="{{route('about-us')}}"
-											title="Movies" class="menu-image-title-after"><span
-												class="menu-image-title">About</span></a></li>
-									
-									<li id="menu-item-1472"
-										class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1472">
-										<a href="{{route('terms-condition')}}"
-											title="Shop" class="menu-image-title-after"><span
-												class="menu-image-title">Terms & condition</span>
+									<li class="menu-item {{ request()->is('/') ? 'current-menu-item' : '' }}">
+										<a href="{{ url('/') }}" title="Home">
+											<span class="menu-image-title">Home</span>
 										</a>
 									</li>
+
 									
-									<li id="menu-item-1349"
-										class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1349">
-										<a href="{{route('contact-us')}}"
-											title="Web Series" class="menu-image-title-after"><span
-												class="menu-image-title">Contact</span>
+									<li class="menu-item {{ request()->routeIs('about-us') ? 'current-menu-item' : '' }}">
+										<a href="{{ route('about-us') }}" title="About">
+											<span class="menu-image-title">About</span>
 										</a>
 									</li>
+
+									
+									<li class="menu-item {{ request()->routeIs('terms-condition') ? 'current-menu-item' : '' }}">
+										<a href="{{ route('terms-condition') }}" title="Terms & Condition">
+											<span class="menu-image-title">Terms & Condition</span>
+										</a>
+									</li>
+
+									
+									<li class="menu-item {{ request()->routeIs('contact-us') ? 'current-menu-item' : '' }}">
+										<a href="{{ route('contact-us') }}" title="Contact">
+											<span class="menu-image-title">Contact</span>
+										</a>
+									</li>
+
 								</ul>
 							</div>  
 						</div>

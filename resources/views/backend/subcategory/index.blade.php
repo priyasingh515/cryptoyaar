@@ -32,6 +32,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Category</th>
+                                    <th>Sub Category</th>
                                     <th>Slug</th>
                                     <th>Order</th>
                                     <th>Status</th>
@@ -40,21 +41,11 @@
                                 </thead>
 
                                 <tbody>
-                                    @foreach ($categories as $item)
+                                    @foreach ($subCategories as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-
-                                        {{-- CATEGORY (Top Level Parent ka naam) --}}
-                                        <td>
-                                            @if($item->parent_id === null)
-                                                {{ $item->name }}
-                                            @elseif(optional($item->parent)->parent_id === null)
-                                                {{ optional($item->parent)->name }}
-                                            @else
-                                                {{ optional(optional($item->parent)->parent)->name }}
-                                            @endif
-                                        </td>
-
+                                        <td>{{ $item->category->name ?? '-' }}</td>
+                                        <td>{{ $item->name }}</td>
                                         <td>{{ $item->slug }}</td>
                                         <td>{{ $item->order }}</td>
 
@@ -65,7 +56,7 @@
                                         </td>
 
                                         <td>
-                                            <a href="{{ route('category.edit', $item->slug) }}"
+                                            <a href="{{ route('subcategory.edit', $item->slug) }}"
                                             class="btn btn-sm btn-warning">Edit</a>
 
                                             <button type="button"
@@ -75,7 +66,7 @@
                                             </button>
 
                                             <form id="delete-form-{{ $item->id }}"
-                                                action="{{ route('category.destroy', $item->id) }}"
+                                                action="{{ route('subcategory.destroy', $item->id) }}"
                                                 method="POST" style="display:none;">
                                                 @csrf
                                                 @method('DELETE')
