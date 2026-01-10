@@ -6,8 +6,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
 	<script>document.documentElement.className = document.documentElement.className + ' yes-js js_active js'</script>
-	<title>Rays IT & Design World</title>
+	<title>Crypto</title>
 	<meta name="robots" content="max-image-preview:large">
+	<link rel="icon" type="image/png" href="{{ asset('/assets/img/cypto.png') }}">
 	<style>
 		img:is([sizes="auto" i], [sizes^="auto," i]) {
 			contain-intrinsic-size: 3000px 1500px
@@ -1533,7 +1534,7 @@
 				<div class="col-lg-2 col-md-3 col-sm-12">
 					<div class="ms-header-logo">
 						<a href="">
-							<img src="{{asset('assets/img/rays.png')}}" alt="logo">
+							<img src="{{asset('assets/img/cryptoyaar.png')}}" alt="logo">
 
 							<span class="ms-logotext"></span>
 						</a>

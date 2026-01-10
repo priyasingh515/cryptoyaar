@@ -6,7 +6,7 @@
 						<div class="ms-footer-first">
 							<div class="ms-footer-logo">
 								<a href="">
-									<img src="{{asset('assets/img/rays.png')}}" alt="logo">
+									<img src="{{asset('assets/img/cryptoyaar.png')}}" alt="logo" style="height: 50px">
 								</a>
 								<p>Questions? Call 1800-040-1234<span></span></p>
 							</div>

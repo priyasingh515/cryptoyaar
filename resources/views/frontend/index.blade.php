@@ -60,59 +60,14 @@
 																	<div class="row gy-4">
 																		@foreach ($categories as $index => $item)
 																			<div class="col-lg-2 col-md-4 col-sm-6 col-6">
-																				<div class="ms-language-box color-{{ $index % 4 }}">
-																					<a href="">
+																				<div class="ms-language-box">
+																					<a href="" class="lang-color-{{ $index % 4 }}">
 																						<h2>{{ $item->name }}</h2>
 																					</a>
-																					<p>{{ $item->name }}</p>
+																					<p>{{ strtolower($item->name) }}</p>
 																				</div>
 																			</div>
 																		@endforeach
-																		{{-- <div class="col-lg-2 col-md-4 col-sm-6 col-6">
-																			<div class="ms-language-box lang-english">
-																				<a
-																					href="">
-																					<h2>English</h2>
-																				</a>
-																				<p>English</p>
-																			</div>
-																		</div>
-																		<div class="col-lg-2 col-md-4 col-sm-6 col-6">
-																			<div class="ms-language-box lang-chinese">
-																				<a
-																					href="">
-																					<h2>Coding</h2>
-																				</a>
-																				<p>Coading</p>
-																			</div>
-																		</div>
-																		<div class="col-lg-2 col-md-4 col-sm-6 col-6">
-																			<div class="ms-language-box lang-spanish">
-																				<a
-																					href="">
-																					<h2>CRYPTO</h2>
-																				</a>
-																				<p>Crypto</p>
-																			</div>
-																		</div>
-																		<div class="col-lg-2 col-md-4 col-sm-6 col-6">
-																			<div class="ms-language-box lang-french">
-																				<a
-																					href="">
-																					<h2>Marketing</h2>
-																				</a>
-																				<p>Marketing</p>
-																			</div>
-																		</div>
-																		<div class="col-lg-2 col-md-4 col-sm-6 col-6">
-																			<div class="ms-language-box lang-arabic">
-																				<a
-																					href="">
-																					<h2>Buisness</h2>
-																				</a>
-																				<p>Buisness</p>
-																			</div>
-																		</div> --}}
 																		
 																	</div>
 																</div>
@@ -123,6 +78,7 @@
 													</div>
 												</div>
 											</div>
+											
 											<div class="vc_row-full-width vc_clearfix"></div>
 											<div data-vc-full-width="true" data-vc-full-width-init="false"
 												data-vc-stretch-content="true"
