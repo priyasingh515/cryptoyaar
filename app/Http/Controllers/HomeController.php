@@ -5,14 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\VideoModel;
 use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
     //
     public function index(){
+        $videosdata = VideoModel::get();
         $categories = Category::orderBy('order', 'asc')->get();
-        return view('frontend.index',compact('categories'));
+        return view('frontend.index',compact('categories','videosdata'));
     }
 
 
@@ -35,6 +37,18 @@ class HomeController extends Controller
     public function terms(){
         return view('frontend.terms');
     }
+
+    public function videodetails($id){
+        $video = VideoModel::findOrFail($id);
+        $relatedVideos = VideoModel::where('category_id', $video->category_id)
+            ->where('id', '!=', $video->id)
+            ->latest()
+            ->take(10)
+            ->get();
+        return view('frontend.video_details',compact('video','relatedVideos'));
+
+    }
+
     public function register(Request $request)
     {
         $request->validate([

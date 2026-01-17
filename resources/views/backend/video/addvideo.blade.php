@@ -42,6 +42,11 @@
                             </div>
 
                             <div class="mb-3 col-md-6">
+                                <label>thumbnail Image</label>
+                                <input type="file" name="thumbnail" class="form-control" required>
+                            </div>
+
+                            <div class="mb-3 col-md-6">
                                 <label>Video Type</label>
                                 <select name="is_free" id="is_free" class="form-control">
                                     <option value="1">Free</option>

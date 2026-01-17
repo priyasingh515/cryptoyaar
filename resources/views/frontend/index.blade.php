@@ -80,199 +80,85 @@
 											</div>
 											
 											<div class="vc_row-full-width vc_clearfix"></div>
-											<div data-vc-full-width="true" data-vc-full-width-init="false"
-												data-vc-stretch-content="true"
-												class="vc_row wpb_row vc_row-fluid vc_row-no-padding">
-												<div class="wpb_column vc_column_container vc_col-sm-12">
-													<div class="vc_column-inner">
-														<div class="wpb_wrapper">
-															<div class="ms-top-rated-wrapper">
-																<div class="container-fluid">
-																	<div class="ms-top-rated-heading">
-																		<h2 class="heading">TOP-RATED VIDEOS</h2>
-																	</div>
-																	<div class="ms-top-rated-slider">
-																		<div class="swiper mySwiper">
-																			<div class="swiper-wrapper">
-																				<div class="swiper-slide">
-																					<div class="ms-top-rated-img">
-																						<a
-																							href=""><img
-																								decoding="async"
-																								src="assets/img/1-1-1.jpg"
-																								alt="webseries">
-																							<div
-																								class="ms-exclusive-rating ms-rating">
-																								<span>
-																									<svg xmlns="http://www.w3.org/2000/svg"
-																										width="12"
-																										height="12"
-																										viewBox="0 0 12 12">
-																										<path
-																											class="cls-1"
-																											d="M561.983,1176.56a0.347,0.347,0,0,0-.284-0.25l-3.72-.57-1.664-3.54a0.348,0.348,0,0,0-.63,0l-1.664,3.54-3.719.57a0.344,0.344,0,0,0-.284.25,0.365,0.365,0,0,0,.089.37l2.691,2.75-0.635,3.89a0.373,0.373,0,0,0,.14.36,0.32,0.32,0,0,0,.207.07,0.315,0.315,0,0,0,.163-0.04l3.327-1.84,3.327,1.84a0.355,0.355,0,0,0,.371-0.03,0.372,0.372,0,0,0,.139-0.36l-0.635-3.89,2.692-2.75A0.365,0.365,0,0,0,561.983,1176.56Z"
-																											transform="translate(-550 -1172)">
-																										</path>
-																									</svg>
-																									5
-																								</span>
+											@if($videosdata->count() > 0)
+												<div data-vc-full-width="true" data-vc-full-width-init="false"
+													data-vc-stretch-content="true"
+													class="vc_row wpb_row vc_row-fluid vc_row-no-padding">
+													<div class="wpb_column vc_column_container vc_col-sm-12">
+														<div class="vc_column-inner">
+															<div class="wpb_wrapper">
+																<div class="ms-top-rated-wrapper">
+																	<div class="container-fluid">
+																		<div class="ms-top-rated-heading">
+																			<h2 class="heading">TOP-RATED VIDEOS</h2>
+																		</div>
+																		<div class="ms-top-rated-slider">
+																			<div class="swiper mySwiper">
+																				<div class="swiper-wrapper">
+																					@foreach ($videosdata as $item)
+																						<div class="swiper-slide">
+																							<div class="ms-top-rated-img">
+																								<a
+																									href="{{route('video-details',$item->id)}}"><img
+																										decoding="async"
+																										src="{{'storage/'.$item->thumbnail}}"
+																										alt="webseries">
+																								</a>
+																								
+																								{{-- <div class="ms-prmum-tag">
+																									<span>
+																										<svg xmlns="http://www.w3.org/2000/svg"
+																											viewBox="0 0 32 32">
+																											<g>
+																												<path
+																													d="M27.488 23l-.513 2.225A1 1 0 0126 26H6a1 1 0 01-.975-.775L4.512 23zM29.975 12.225L27.95 21H4.05l-2.025-8.775a1.001 1.001 0 011.471-1.093l6.189 3.537 5.482-8.223c.179-.268.475-.434.796-.446a.99.99 0 01.826.386l6.429 8.266 5.227-3.484a1.002 1.002 0 011.53 1.057z">
+																												</path>
+																											</g>
+																										</svg>
+																									</span>
+																									<p>{{$item->title}}</p>
+																								</div> --}}
 																							</div>
-																						</a>
-																						<div class="ms-prmum-tag">
-																							<span>
-																								<svg xmlns="http://www.w3.org/2000/svg"
-																									viewBox="0 0 32 32">
-																									<g>
-																										<path
-																											d="M27.488 23l-.513 2.225A1 1 0 0126 26H6a1 1 0 01-.975-.775L4.512 23zM29.975 12.225L27.95 21H4.05l-2.025-8.775a1.001 1.001 0 011.471-1.093l6.189 3.537 5.482-8.223c.179-.268.475-.434.796-.446a.99.99 0 01.826.386l6.429 8.266 5.227-3.484a1.002 1.002 0 011.53 1.057z">
-																										</path>
-																									</g>
-																								</svg>
-																							</span>
-																							<p>Premium</p>
 																						</div>
-																					</div>
+																					@endforeach
+																					
 																				</div>
-																				<div class="swiper-slide">
-																					<div class="ms-top-rated-img">
-																						<a
-																							href=""><img
-																								decoding="async"
-																								src="assets/img/2-3-1.jpg"
-																								alt="webseries">
-																							<div
-																								class="ms-exclusive-rating ms-rating">
-																								<span>
-																									<svg xmlns="http://www.w3.org/2000/svg"
-																										width="12"
-																										height="12"
-																										viewBox="0 0 12 12">
-																										<path
-																											class="cls-1"
-																											d="M561.983,1176.56a0.347,0.347,0,0,0-.284-0.25l-3.72-.57-1.664-3.54a0.348,0.348,0,0,0-.63,0l-1.664,3.54-3.719.57a0.344,0.344,0,0,0-.284.25,0.365,0.365,0,0,0,.089.37l2.691,2.75-0.635,3.89a0.373,0.373,0,0,0,.14.36,0.32,0.32,0,0,0,.207.07,0.315,0.315,0,0,0,.163-0.04l3.327-1.84,3.327,1.84a0.355,0.355,0,0,0,.371-0.03,0.372,0.372,0,0,0,.139-0.36l-0.635-3.89,2.692-2.75A0.365,0.365,0,0,0,561.983,1176.56Z"
-																											transform="translate(-550 -1172)">
-																										</path>
-																									</svg>
-																									5
-																								</span>
-																							</div>
-																						</a>
-																					</div>
-																				</div>
-																				<div class="swiper-slide">
-																					<div class="ms-top-rated-img">
-																						<a
-																							href=""><img
-																								decoding="async"
-																								src="assets/img/6-1.jpg"
-																								alt="webseries">
-																							<div
-																								class="ms-exclusive-rating ms-rating">
-																								<span>
-																									<svg xmlns="http://www.w3.org/2000/svg"
-																										width="12"
-																										height="12"
-																										viewBox="0 0 12 12">
-																										<path
-																											class="cls-1"
-																											d="M561.983,1176.56a0.347,0.347,0,0,0-.284-0.25l-3.72-.57-1.664-3.54a0.348,0.348,0,0,0-.63,0l-1.664,3.54-3.719.57a0.344,0.344,0,0,0-.284.25,0.365,0.365,0,0,0,.089.37l2.691,2.75-0.635,3.89a0.373,0.373,0,0,0,.14.36,0.32,0.32,0,0,0,.207.07,0.315,0.315,0,0,0,.163-0.04l3.327-1.84,3.327,1.84a0.355,0.355,0,0,0,.371-0.03,0.372,0.372,0,0,0,.139-0.36l-0.635-3.89,2.692-2.75A0.365,0.365,0,0,0,561.983,1176.56Z"
-																											transform="translate(-550 -1172)">
-																										</path>
-																									</svg>
-																									5
-																								</span>
-																							</div>
-																						</a>
-																						<div class="ms-prmum-tag">
-																							<span>
-																								<svg xmlns="http://www.w3.org/2000/svg"
-																									viewBox="0 0 32 32">
-																									<g>
-																										<path
-																											d="M27.488 23l-.513 2.225A1 1 0 0126 26H6a1 1 0 01-.975-.775L4.512 23zM29.975 12.225L27.95 21H4.05l-2.025-8.775a1.001 1.001 0 011.471-1.093l6.189 3.537 5.482-8.223c.179-.268.475-.434.796-.446a.99.99 0 01.826.386l6.429 8.266 5.227-3.484a1.002 1.002 0 011.53 1.057z">
-																										</path>
-																									</g>
-																								</svg>
-																							</span>
-																							<p>Premium</p>
-																						</div>
-																					</div>
-																				</div>
-																				<div class="swiper-slide">
-																					<div class="ms-top-rated-img">
-																						<a
-																							href=""><img
-																								decoding="async"
-																								src="assets/img/1-2.jpg"
-																								alt="webseries">
-																							<div
-																								class="ms-exclusive-rating ms-rating">
-																								<span>
-																									<svg xmlns="http://www.w3.org/2000/svg"
-																										width="12"
-																										height="12"
-																										viewBox="0 0 12 12">
-																										<path
-																											class="cls-1"
-																											d="M561.983,1176.56a0.347,0.347,0,0,0-.284-0.25l-3.72-.57-1.664-3.54a0.348,0.348,0,0,0-.63,0l-1.664,3.54-3.719.57a0.344,0.344,0,0,0-.284.25,0.365,0.365,0,0,0,.089.37l2.691,2.75-0.635,3.89a0.373,0.373,0,0,0,.14.36,0.32,0.32,0,0,0,.207.07,0.315,0.315,0,0,0,.163-0.04l3.327-1.84,3.327,1.84a0.355,0.355,0,0,0,.371-0.03,0.372,0.372,0,0,0,.139-0.36l-0.635-3.89,2.692-2.75A0.365,0.365,0,0,0,561.983,1176.56Z"
-																											transform="translate(-550 -1172)">
-																										</path>
-																									</svg>
-																									5
-																								</span>
-																							</div>
-																						</a>
-																						<div class="ms-prmum-tag">
-																							<span>
-																								<svg xmlns="http://www.w3.org/2000/svg"
-																									viewBox="0 0 32 32">
-																									<g>
-																										<path
-																											d="M27.488 23l-.513 2.225A1 1 0 0126 26H6a1 1 0 01-.975-.775L4.512 23zM29.975 12.225L27.95 21H4.05l-2.025-8.775a1.001 1.001 0 011.471-1.093l6.189 3.537 5.482-8.223c.179-.268.475-.434.796-.446a.99.99 0 01.826.386l6.429 8.266 5.227-3.484a1.002 1.002 0 011.53 1.057z">
-																										</path>
-																									</g>
-																								</svg>
-																							</span>
-																							<p>Premium</p>
-																						</div>
-																					</div>
-																				</div>
+																				<div class="swiper-pagination"></div>
 																			</div>
-																			<div class="swiper-pagination"></div>
 																		</div>
 																	</div>
-																</div>
-																<div class="ms-letest-top-navigation">
-																	<div class="swiper-button-next">
-																		<span>
-																			<svg xmlns="http://www.w3.org/2000/svg"
-																				width="7" height="12"
-																				viewBox="0 0 7 12">
-																				<path class="cls-1"
-																					d="M1909.81,2028.53l-5.3-5.34a0.66,0.66,0,0,0-.46-0.19,0.642,0.642,0,0,0-.46.19l-0.39.39a0.652,0.652,0,0,0,0,.93l4.45,4.49-4.46,4.49a0.652,0.652,0,0,0,0,.92l0.39,0.4a0.66,0.66,0,0,0,.46.19,0.642,0.642,0,0,0,.46-0.19l5.31-5.35a0.66,0.66,0,0,0,.19-0.46A0.683,0.683,0,0,0,1909.81,2028.53Z"
-																					transform="translate(-1903 -2023)">
-																				</path>
-																			</svg>
-																		</span>
-																	</div>
-																	<div class="swiper-button-prev">
-																		<span>
-																			<svg xmlns="http://www.w3.org/2000/svg"
-																				width="7" height="12"
-																				viewBox="0 0 7 12">
-																				<path class="cls-1"
-																					d="M1909.81,2028.53l-5.3-5.34a0.66,0.66,0,0,0-.46-0.19,0.642,0.642,0,0,0-.46.19l-0.39.39a0.652,0.652,0,0,0,0,.93l4.45,4.49-4.46,4.49a0.652,0.652,0,0,0,0,.92l0.39,0.4a0.66,0.66,0,0,0,.46.19,0.642,0.642,0,0,0,.46-0.19l5.31-5.35a0.66,0.66,0,0,0,.19-0.46A0.683,0.683,0,0,0,1909.81,2028.53Z"
-																					transform="translate(-1903 -2023)">
-																				</path>
-																			</svg>
-																		</span>
+																	<div class="ms-letest-top-navigation">
+																		<div class="swiper-button-next">
+																			<span>
+																				<svg xmlns="http://www.w3.org/2000/svg"
+																					width="7" height="12"
+																					viewBox="0 0 7 12">
+																					<path class="cls-1"
+																						d="M1909.81,2028.53l-5.3-5.34a0.66,0.66,0,0,0-.46-0.19,0.642,0.642,0,0,0-.46.19l-0.39.39a0.652,0.652,0,0,0,0,.93l4.45,4.49-4.46,4.49a0.652,0.652,0,0,0,0,.92l0.39,0.4a0.66,0.66,0,0,0,.46.19,0.642,0.642,0,0,0,.46-0.19l5.31-5.35a0.66,0.66,0,0,0,.19-0.46A0.683,0.683,0,0,0,1909.81,2028.53Z"
+																						transform="translate(-1903 -2023)">
+																					</path>
+																				</svg>
+																			</span>
+																		</div>
+																		<div class="swiper-button-prev">
+																			<span>
+																				<svg xmlns="http://www.w3.org/2000/svg"
+																					width="7" height="12"
+																					viewBox="0 0 7 12">
+																					<path class="cls-1"
+																						d="M1909.81,2028.53l-5.3-5.34a0.66,0.66,0,0,0-.46-0.19,0.642,0.642,0,0,0-.46.19l-0.39.39a0.652,0.652,0,0,0,0,.93l4.45,4.49-4.46,4.49a0.652,0.652,0,0,0,0,.92l0.39,0.4a0.66,0.66,0,0,0,.46.19,0.642,0.642,0,0,0,.46-0.19l5.31-5.35a0.66,0.66,0,0,0,.19-0.46A0.683,0.683,0,0,0,1909.81,2028.53Z"
+																						transform="translate(-1903 -2023)">
+																					</path>
+																				</svg>
+																			</span>
+																		</div>
 																	</div>
 																</div>
 															</div>
 														</div>
 													</div>
 												</div>
-											</div>
+                                            @endif
 											<div class="vc_row-full-width vc_clearfix"></div>
 											<div data-vc-full-width="true" data-vc-full-width-init="false"
 												data-vc-stretch-content="true"

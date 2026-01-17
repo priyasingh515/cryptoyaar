@@ -55,6 +55,11 @@
                                 <input type="file" name="video" class="form-control">
                             </div>
 
+                            <div class="mb-3 col-md-6">
+                                <label>thumbnail image</label>
+                                <input type="file" name="thumbnail" class="form-control">
+                            </div>
+
                             {{-- VIDEO TYPE --}}
                             <div class="mb-3 col-md-6">
                                 <label>Video Type</label>

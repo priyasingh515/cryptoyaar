@@ -34,6 +34,7 @@
                                         <th>Type</th>
                                         <th>Plan</th>
                                         <th>Play</th>
+                                        <th>Thumbnail Image</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -66,6 +67,9 @@
                                                     data-title="{{ $video->title }}">
                                                     <i class="bx bx-play-circle font-size-22"></i>
                                                 </button>
+                                            </td>
+                                            <td>
+                                                <img src="{{asset('storage/'.$video->thumbnail)}}" height="100" alt="Thumbnail">
                                             </td>
                                             <td>
                                                 @if($video->status)

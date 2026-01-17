@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
 	<script>document.documentElement.className = document.documentElement.className + ' yes-js js_active js'</script>
-	<title>Crypto</title>
+	<title>Cryptoyaar</title>
 	<meta name="robots" content="max-image-preview:large">
 	<link rel="icon" type="image/png" href="{{ asset('/assets/img/cypto.png') }}">
 	<style>

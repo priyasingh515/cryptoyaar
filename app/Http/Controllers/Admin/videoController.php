@@ -17,8 +17,6 @@ class VideoController extends Controller
         return view('backend.video.index', compact('videos'));
     }
 
-
-
     public function create()
     {
         $categories = Category::where('status', 1)->orderBy('order')->get();
@@ -33,17 +31,22 @@ class VideoController extends Controller
             'title'       => 'required|string|max:255',
             'category_id' => 'required|exists:categories,id',
             'video'       => 'required|mimes:mp4,mkv,avi,webm|max:512000',
+            'thumbnail'   => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
             'is_free'     => 'required|boolean',
             'plan_id'     => 'required_if:is_free,0|nullable|exists:plans,id',
         ]);
 
         $videoPath = $request->file('video')->store('videos', 'public');
+        
+        $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
+
 
         VideoModel::create([
             'title'       => $request->title,
             'description' => $request->description,
             'category_id' => $request->category_id,
             'plan_id'     => $request->is_free ? null : $request->plan_id,
+            'thumbnail' => $thumbnailPath,
             'video_path'  => $videoPath,
             'is_free'     => $request->is_free,
             'status'      => 1,
@@ -70,6 +73,7 @@ class VideoController extends Controller
             'title'       => 'required|string|max:255',
             'category_id' => 'required|exists:categories,id',
             'video'       => 'nullable|mimes:mp4,mkv,avi,webm|max:512000',
+            'thumbnail'   => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'is_free'     => 'required|boolean',
             'plan_id'     => 'nullable|exists:plans,id',
         ]);
@@ -79,6 +83,14 @@ class VideoController extends Controller
                 Storage::disk('public')->delete($video->video_path);
             }
             $video->video_path = $request->file('video')->store('videos', 'public');
+        }
+
+        if ($request->hasFile('thumbnail')) {
+            if ($video->thumbnail && Storage::disk('public')->exists($video->thumbnail)) {
+                Storage::disk('public')->delete($video->thumbnail);
+            }
+
+            $video->thumbnail = $request->file('thumbnail')->store('thumbnails', 'public');
         }
 
         $video->update([

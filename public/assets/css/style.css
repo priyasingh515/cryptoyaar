@@ -933,6 +933,20 @@ textarea {
 	z-index: 100000;
 }
 
+
+/* video details page  */
+.ms-overview-left {
+	position: relative;
+}
+
+.ms-overview-left span {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	pointer-events: none; 
+}
+
 /* Do not show the outline on the skip link target. */
 #primary[tabindex="-1"]:focus {
 	outline: 0;
