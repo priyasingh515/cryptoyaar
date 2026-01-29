@@ -52,22 +52,56 @@
                                             <td>{{$item->instagram_link}}</td>
                                             <td>{{$item->top_video_link}}</td>
                                             <td>
-                                                <a href="{{ route('members.edit', $item->id) }}"
-                                                    class="btn btn-sm btn-warning">
+                                                <a href="javascript:void(0)"
+                                                    class="btn btn-sm btn-warning"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#statusModal{{ $item->id }}">
                                                     Edit
                                                 </a>
-
-                                                <form action="{{ route('members.destroy', $item->id) }}"
-                                                    method="post"
-                                                    style="display:inline;">
-                                                    @csrf
-                                                    <button class="btn btn-sm btn-danger"
-                                                            onclick="return confirm('Are you sure?')">
-                                                        Deactivate
-                                                    </button>
-                                                </form>
                                             </td>
                                         </tr>
+
+                                        <div class="modal fade" id="statusModal{{ $item->id }}" tabindex="-1">
+                                            <div class="modal-dialog">
+                                                <form action="{{ route('creator.status.update', $item->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('PUT')
+
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Update Creator Status</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                        </div>
+
+                                                        <div class="modal-body">
+
+                                                            <div class="mb-2">
+                                                                <label>User</label>
+                                                                <input type="text" class="form-control"
+                                                                    value="{{ $item->user->name ?? '-' }}" readonly>
+                                                            </div>
+
+                                                            <div class="mb-2">
+                                                                <label>Status</label>
+                                                                <select name="status" class="form-control">
+                                                                    <option value="pending" {{ $item->status == 'pending' ? 'selected' : '' }}>Pending</option>
+                                                                    <option value="approved" {{ $item->status == 'approved' ? 'selected' : '' }}>Approved</option>
+                                                                    <option value="rejected" {{ $item->status == 'rejected' ? 'selected' : '' }}>Rejected</option>
+                                                                </select>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="modal-footer">
+                                                            <button type="submit" class="btn btn-success">Update</button>
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                                                Cancel
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
                                     @endforeach
                                 </tbody>
                             </table>

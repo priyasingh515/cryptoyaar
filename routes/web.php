@@ -41,6 +41,9 @@ Route::prefix('admin')->group(function () {
     Route::middleware('auth:admin')->group(function () {
         Route::get('dashboard', [AdminConroller::class, 'index'])->name('admin.dashboard');
         Route::get('creatorlist', [AdminConroller::class, 'creatorReq'])->name('admin.creatorlist');
+        Route::put('/creator-status/{id}', [AdminConroller::class, 'updateStatus'])
+            ->name('creator.status.update');
+
         Route::post('logout', [AuthController::class, 'logout'])->name('admin.logout');
         // Role
         Route::get('roles', [RoleController::class, 'index'])->name('roles.index');

@@ -33,4 +33,27 @@ class AdminConroller extends Controller
         $creators = CreatorRequest::with('user')->get();
         return view('backend.creator.index',compact('creators'));
     }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $creator = CreatorRequest::with('user')->findOrFail($id);
+
+        $creator->status = $request->status;
+        $creator->save();
+
+        if ($request->status === 'approved') {
+            $creator->user->update([
+                'role' => 'creator'
+            ]);
+        }
+
+        if (in_array($request->status, ['rejected', 'pending'])) {
+            $creator->user->update([
+                'role' => 'user'
+            ]);
+        }
+
+        return back()->with('success', 'Status updated successfully');
+    }
+
 }
