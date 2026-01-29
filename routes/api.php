@@ -2,6 +2,10 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\ProfileController;
+use App\Http\Controllers\Api\BankDetailController;
+use App\Http\Controllers\Api\CreatorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +18,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->group(function () {
+
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+
+    Route::get('/profile', [ProfileController::class, 'show']);
+    Route::post('/profile/update', [ProfileController::class, 'update']);
+
+    Route::get('/bank-details', [BankDetailController::class, 'show']);
+    Route::post('/bank-details', [BankDetailController::class, 'store']);
+
+    Route::post('/become-creator', [CreatorController::class, 'submit']);
+    Route::get('/creator-request-status', [CreatorController::class, 'status']);
+
 });
+
+Route::post('/send-otp',[AuthController::class,'sendOtp']);
+Route::post('/verify-otp',[AuthController::class,'verifyOtp']);

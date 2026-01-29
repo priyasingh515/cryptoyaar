@@ -22,7 +22,9 @@ class User extends Authenticatable
         'email',
         'password',
         'phone',
-        'role'
+        'role',
+        'pan_no',
+        'occupation'
     ];
 
     /**
@@ -48,4 +50,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(LikeModel::class);
     }
+
+    public function bankDetail()
+    {
+        return $this->hasOne(BankDetail::class); 
+    }
+
 }

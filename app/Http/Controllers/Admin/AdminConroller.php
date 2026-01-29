@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Admin;
 use App\Models\CommentModel;
 use App\Models\VideoModel;
+use App\Models\CreatorRequest;
 
 class AdminConroller extends Controller
 {
@@ -21,10 +22,15 @@ class AdminConroller extends Controller
     }
 
     
-public function likeTest()
-{
-    $videos = VideoModel::all();
-    $comment = CommentModel::all();
-    return view('backend.video.like-test', compact('videos'));
-}
+    public function likeTest()
+    {
+        $videos = VideoModel::all();
+        $comment = CommentModel::all();
+        return view('backend.video.like-test', compact('videos'));
+    }
+
+    public function creatorReq(){
+        $creators = CreatorRequest::with('user')->get();
+        return view('backend.creator.index',compact('creators'));
+    }
 }

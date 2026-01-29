@@ -22,6 +22,7 @@
     <link href="{{ asset('assets/admin/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
     <!-- Dark Mode Css-->
     <link href="{{ asset('assets/admin/css/dark-layout.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
+
     <!-- DataTables -->
     <link href="{{ asset('assets/admin/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet"
         type="text/css" />
@@ -33,6 +34,7 @@
     <!-- Responsive datatable -->
     <link href="{{ asset('assets/admin/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css') }}"
         rel="stylesheet" type="text/css" />
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
 </head>
@@ -183,6 +185,13 @@
                             <a href="{{ route('admin.dashboard') }}" class="waves-effect">
                                 <i class='bx bxs-dashboard'></i>
                                 <span>Dashboard</span>
+                            </a>
+                        </li>
+
+                        <li class="{{ request()->routeIs('admin.creatorlist') ? 'mm-active' : '' }}">
+                            <a href="{{ route('admin.creatorlist') }}" class="waves-effect">
+                                <i class='bx bxs-dashboard'></i>
+                                <span>Creator Request</span>
                             </a>
                         </li>
 
