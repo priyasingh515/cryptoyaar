@@ -167,6 +167,7 @@
             $categoryActive = request()->is('admin/category*');
             $subcategoryActive = request()->is('admin/subcategory*');
             $supersubcategoryActive = request()->is('admin/supersubcategory*');
+            $creatorActive = request()->is('admin/creator*');
         @endphp
 
 
@@ -188,12 +189,34 @@
                             </a>
                         </li>
 
-                        <li class="{{ request()->routeIs('admin.creatorlist') ? 'mm-active' : '' }}">
+                        {{-- <li class="{{ request()->routeIs('admin.creatorlist') ? 'mm-active' : '' }}">
                             <a href="{{ route('admin.creatorlist') }}" class="waves-effect">
                                 <i class='bx bxs-dashboard'></i>
                                 <span>Creator Request</span>
                             </a>
-                        </li>
+                        </li> --}}
+
+                        @if (auth('admin')->user()->hasPermission('creator-request'))
+
+                            <li class="{{ $creatorActive ? 'mm-active' : '' }}">
+                                <a href="javascript:void(0);"
+                                    class="has-arrow waves-effect {{ $creatorActive ? 'mm-active' : '' }}">
+                                    <i class="bx bx-user"></i>
+                                    <span>Creator</span>
+                                </a>
+                                <ul class="sub-menu {{ $creatorActive ? 'mm-show' : '' }}">
+
+                                    @if (auth('admin')->user()->hasPermission('creator-request'))
+                                        <li>
+                                            <a href="{{ route('admin.creatorlist') }}"
+                                                class="{{ request()->routeIs('admin.creatorlist') ? 'active' : '' }}">
+                                                Creator Request
+                                            </a>
+                                        </li>
+                                    @endif
+                                </ul>
+                            </li>
+                        @endif
 
                         @if (auth('admin')->user()->hasPermission('create-member') || auth('admin')->user()->hasPermission('view-member'))
 
