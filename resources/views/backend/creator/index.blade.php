@@ -26,7 +26,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Member Request</h4>
+                            <h4 class="card-title">Creator Request</h4>
                             <table id="datatable" class="table table-bordered dt-responsive nowrap w-100">
                                 <thead>
                                 <tr>

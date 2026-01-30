@@ -5,10 +5,10 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Dashboard | CSV - Centre of Science For Villages</title>
+    <title>Dashboard | Cryptoyaar</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="CSV - Centre of Science For Villages" name="description" />
-    <meta content="CSV - Centre of Science For Villages" name="author" />
+    <meta content="cryptoyaar" name="description" />
+    <meta content="cryptoyaar" name="author" />
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('assets/admin/images/favicon.ico') }}">
     <link href="{{ asset('assets/admin/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
@@ -168,6 +168,7 @@
             $subcategoryActive = request()->is('admin/subcategory*');
             $supersubcategoryActive = request()->is('admin/supersubcategory*');
             $creatorActive = request()->is('admin/creator*');
+            $enquiryActive = request()->is('admin/enquirylist*');
         @endphp
 
 
@@ -189,13 +190,6 @@
                             </a>
                         </li>
 
-                        {{-- <li class="{{ request()->routeIs('admin.creatorlist') ? 'mm-active' : '' }}">
-                            <a href="{{ route('admin.creatorlist') }}" class="waves-effect">
-                                <i class='bx bxs-dashboard'></i>
-                                <span>Creator Request</span>
-                            </a>
-                        </li> --}}
-
                         @if (auth('admin')->user()->hasPermission('creator-request'))
 
                             <li class="{{ $creatorActive ? 'mm-active' : '' }}">
@@ -211,6 +205,27 @@
                                             <a href="{{ route('admin.creatorlist') }}"
                                                 class="{{ request()->routeIs('admin.creatorlist') ? 'active' : '' }}">
                                                 Creator Request
+                                            </a>
+                                        </li>
+                                    @endif
+                                </ul>
+                            </li>
+                        @endif
+                        @if (auth('admin')->user()->hasPermission('enquiry-list'))
+
+                            <li class="{{ $enquiryActive ? 'mm-active' : '' }}">
+                                <a href="javascript:void(0);"
+                                    class="has-arrow waves-effect {{ $enquiryActive ? 'mm-active' : '' }}">
+                                    <i class="bx bx-user"></i>
+                                    <span>Enquiry</span>
+                                </a>
+                                <ul class="sub-menu {{ $enquiryActive ? 'mm-show' : '' }}">
+
+                                    @if (auth('admin')->user()->hasPermission('creator-request'))
+                                        <li>
+                                            <a href="{{ route('enquirylist') }}"
+                                                class="{{ request()->routeIs('enquirylist') ? 'active' : '' }}">
+                                                Enquiry List
                                             </a>
                                         </li>
                                     @endif

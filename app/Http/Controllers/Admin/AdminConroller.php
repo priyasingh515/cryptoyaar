@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Admin;
 use App\Models\CommentModel;
+use App\Models\ContactEnquiry;
 use App\Models\VideoModel;
 use App\Models\CreatorRequest;
 
@@ -55,6 +56,20 @@ class AdminConroller extends Controller
         }
 
         return back()->with('success', 'Status updated successfully');
+    }
+
+    public function enquiryList(){
+        $enquiryData = ContactEnquiry::get();
+        return view('backend.enquiry',compact('enquiryData'));
+    }
+
+    public function enquirydestroy($id)
+    {
+        $category = ContactEnquiry::findOrFail($id);
+        $category->delete();
+
+        return redirect()->back()
+            ->with('success', 'Enquiry List deleted successfully');
     }
 
 

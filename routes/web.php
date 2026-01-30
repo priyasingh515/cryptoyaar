@@ -27,6 +27,7 @@ Route::get('/contact', [HomeController::class, 'contact'])->name('contact-us');
 Route::get('/about', [HomeController::class, 'about'])->name('about-us');
 Route::get('/privacy', [HomeController::class, 'privacy'])->name('privacy-policy');
 Route::get('/terms', [HomeController::class, 'terms'])->name('terms-condition');
+
 Route::get('/faq', [HomeController::class, 'faq'])->name('faq');
 Route::get('/videodetails/{id}', [HomeController::class, 'videodetails'])->name('video-details');
 Route::post('/contact-enquiry', [HomeController::class, 'enquirystore'])
@@ -45,6 +46,9 @@ Route::prefix('admin')->group(function () {
         Route::get('creatorlist', [AdminConroller::class, 'creatorReq'])->name('admin.creatorlist');
         Route::put('/creator-status/{id}', [AdminConroller::class, 'updateStatus'])
             ->name('creator.status.update');
+
+        Route::get('/enquiry', [AdminConroller::class, 'enquiryList'])->name('enquirylist');    
+        Route::delete('enquiry/{id}/destroy', [AdminConroller::class, 'enquirydestroy'])->name('enquiry.destroy');
 
         Route::post('logout', [AuthController::class, 'logout'])->name('admin.logout');
         // Role
