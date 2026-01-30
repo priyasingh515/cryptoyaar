@@ -1390,6 +1390,7 @@
 	<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed"
 		href="https://demo.kamleshyadav.com/themeforest/videospire/videospire-rtl/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fdemo.kamleshyadav.com%2Fthemeforest%2Fvideospire%2Fvideospire-rtl%2F&amp;format=xml">
 	<meta name="generator" content="Redux 4.5.7">
+	
 	<style type="text/css">
 		:root {
 			--ms-light-primary-color: #ff0065;

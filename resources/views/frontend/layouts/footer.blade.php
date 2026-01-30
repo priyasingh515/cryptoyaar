@@ -540,6 +540,8 @@
 			</div>
 		</div>
 	</div>
+
+
 	{{-- <script type="text/template" id="tmpl-variation-template">
         <div class="woocommerce-variation-description">{{{ data.variation.variation_description }}}</div>
         <div class="woocommerce-variation-price">{{{ data.variation.price_html }}}</div>
@@ -622,7 +624,8 @@
 	</script>
 	<script src="{{asset('assets/js/single-product.min.js')}}" id="wc-single-product-js" defer="" data-wp-strategy="defer"></script>
 	<script></script>
-
+	
+   
 </body>
 
 </html>

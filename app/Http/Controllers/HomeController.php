@@ -6,6 +6,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\VideoModel;
+use App\Models\ContactEnquiry;
 use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
@@ -67,5 +68,19 @@ class HomeController extends Controller
 
         return redirect()->back()
             ->with('success', 'Registration successful. Please login.');
+    }
+
+     public function enquirystore(Request $request)
+    {
+        $request->validate([
+            'name'    => 'required|string|max:255',
+            'email'   => 'required|email',
+            'phone'   => 'required|string|max:15',
+            'message' => 'required|string',
+        ]);
+
+        ContactEnquiry::create($request->all());
+
+        return back()->with('success', 'Thank you! Your message has been sent.');
     }
 }

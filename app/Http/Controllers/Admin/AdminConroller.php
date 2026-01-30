@@ -11,6 +11,7 @@ use App\Models\CommentModel;
 use App\Models\VideoModel;
 use App\Models\CreatorRequest;
 
+
 class AdminConroller extends Controller
 {
     //
@@ -55,5 +56,8 @@ class AdminConroller extends Controller
 
         return back()->with('success', 'Status updated successfully');
     }
+
+
+
 
 }

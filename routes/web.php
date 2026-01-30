@@ -29,6 +29,8 @@ Route::get('/privacy', [HomeController::class, 'privacy'])->name('privacy-policy
 Route::get('/terms', [HomeController::class, 'terms'])->name('terms-condition');
 Route::get('/faq', [HomeController::class, 'faq'])->name('faq');
 Route::get('/videodetails/{id}', [HomeController::class, 'videodetails'])->name('video-details');
+Route::post('/contact-enquiry', [HomeController::class, 'enquirystore'])
+    ->name('contact.enquiry.store');
 
 Route::get('/captcha', [AuthController::class, 'captchagenerate'])
     ->name('captcha.generate');

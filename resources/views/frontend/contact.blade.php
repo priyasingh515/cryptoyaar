@@ -1,6 +1,10 @@
 @extends('frontend.layouts.main')
 @section('content')
-
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
 <div class="ms-breadcrumb-wrapper text-center ">
 	<div class="container">
 		<div class="row">
@@ -15,6 +19,7 @@
 		</div>
 	</div>
 </div> 
+
  <main id="primary" class="site-main">
 
 	<section class="ms-main-page-container">
@@ -79,16 +84,10 @@
 									</div>
 								</div>
 
-
-
-
-
 								<!-- RIGHT : Contact Form -->
 								<div class="col-lg-7 col-md-12">
-
-									<form method="POST" action="">
+									<form method="POST" action="{{ route('contact.enquiry.store') }}">
 										@csrf
-
 										<div class="ms-login-input-field">
 
 											<div class="ms-login-input ms-register-icon">
@@ -124,7 +123,6 @@
 										</div>
 
 									</form>
-
 								</div>
 
 							</div><!-- row -->
