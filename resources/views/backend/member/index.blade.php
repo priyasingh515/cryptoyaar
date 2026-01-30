@@ -1,5 +1,6 @@
 @extends('backend.layouts.main')
 @section('content')
+
 <div class="main-content">
     <div class="page-content">
         <div class="container-fluid">

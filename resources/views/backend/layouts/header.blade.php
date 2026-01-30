@@ -36,12 +36,34 @@
         rel="stylesheet" type="text/css" />
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
 
 <body data-sidebar="dark">
 
+  @if(session('success'))
+    <script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Success',
+        text: "{{ session('success') }}",
+        timer: 2000,
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#3085d6'
+    });
+    </script>
+    @endif
 
+    @if(session('error'))
+    <script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: "{{ session('error') }}"
+    });
+    </script>
+@endif
     <!-- Begin page -->
     <div id="layout-wrapper">
         <header id="page-topbar">

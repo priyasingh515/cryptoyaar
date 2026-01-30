@@ -167,7 +167,6 @@
         <!-- apexcharts -->
         <script src="{{asset('assets/admin/libs/apexcharts/apexcharts.min.js')}}"></script>
 
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         
 
          <!-- Required datatable js -->
@@ -263,28 +262,7 @@
             });
         </script>
 
-        @if(session('success'))
-            <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: "{{ session('success') }}",
-                timer: 2000,
-                confirmButtonText: 'OK',
-                confirmButtonColor: '#3085d6'
-            });
-            </script>
-            @endif
-
-            @if(session('error'))
-            <script>
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: "{{ session('error') }}"
-            });
-            </script>
-        @endif
+       
 
     </body>
 </html>
