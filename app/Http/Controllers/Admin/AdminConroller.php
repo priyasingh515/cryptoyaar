@@ -72,6 +72,11 @@ class AdminConroller extends Controller
             ->with('success', 'Enquiry List deleted successfully');
     }
 
+    public function userlist(){
+        $usersList = User::where('role','user')->latest()->get();
+        return view('backend.user_list',compact('usersList'));
+    }
+
 
 
 

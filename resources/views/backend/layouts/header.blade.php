@@ -212,6 +212,13 @@
                             </a>
                         </li>
 
+                        <li class="{{ request()->routeIs('userlist') ? 'mm-active' : '' }}">
+                            <a href="{{ route('userlist') }}" class="waves-effect">
+                                <i class='bx bxs-dashboard'></i>
+                                <span>Users</span>
+                            </a>
+                        </li>
+
                         @if (auth('admin')->user()->hasPermission('creator-request'))
 
                             <li class="{{ $creatorActive ? 'mm-active' : '' }}">

@@ -47,6 +47,7 @@ Route::prefix('admin')->group(function () {
         Route::put('/creator-status/{id}', [AdminConroller::class, 'updateStatus'])
             ->name('creator.status.update');
 
+        Route::get('/users', [AdminConroller::class, 'userList'])->name('userlist');    
         Route::get('/enquiry', [AdminConroller::class, 'enquiryList'])->name('enquirylist');    
         Route::delete('enquiry/{id}/destroy', [AdminConroller::class, 'enquirydestroy'])->name('enquiry.destroy');
 
