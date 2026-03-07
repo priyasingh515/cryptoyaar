@@ -103,12 +103,12 @@
                     </button>
 
                     <!-- App Search-->
-                    <form class="app-search d-none d-lg-block">
+                    {{-- <form class="app-search d-none d-lg-block">
                         <div class="position-relative">
                             <input type="text" class="form-control" placeholder="Search...">
                             <span class="mdi mdi-magnify"></span>
                         </div>
-                    </form>
+                    </form> --}}
                 </div>
 
                 <div class="d-flex">
@@ -496,6 +496,93 @@
                                 </ul>
                             </li>
                         @endif
+
+
+
+                        {{-- refer and earn --}}
+
+                        {{-- show member list and add member  --}}
+                             <li class="{{ $roleActive ? 'mm-active' : '' }}">
+                                <a href="javascript:void(0);"
+                                    class="has-arrow waves-effect {{ $roleActive ? 'mm-active' : '' }}">
+                                    <i class="fas fa-user-shield"></i>
+                                    <span>Refer & Earn</span>
+                                </a>
+
+                                <ul class="sub-menu {{ $roleActive ? 'mm-show' : '' }}">
+
+                                    @if (auth('admin')->user()->hasPermission('create-role'))
+                                        <li>
+                                            <a href="{{ route('mlm.members.index') }}"
+                                                class="{{ request()->routeIs('mlm.members.index') ? 'active' : '' }}">
+                                                Member List
+                                            </a>
+                                        </li>
+                                    @endif
+
+                                    @if (auth('admin')->user()->hasPermission('view-role'))
+                                        <li>
+                                            <a href="{{ route('mlm.members.create') }}"
+                                                class="{{ request()->routeIs('mlm.members.create') ? 'active' : '' }}">
+                                                Add Member
+                                            </a>
+                                        </li>
+                                    @endif
+
+                                </ul>
+                            </li>
+
+
+                            {{-- withdraw list --}}
+                            {{-- show commission  --}}
+
+                                  <li class="{{ $roleActive ? 'mm-active' : '' }}">
+                                <a href="javascript:void(0);"
+                                    class="has-arrow waves-effect {{ $roleActive ? 'mm-active' : '' }}">
+                                    <i class="fas fa-user-shield"></i>
+                                    <span>Commission</span>
+                                </a>
+
+                                <ul class="sub-menu {{ $roleActive ? 'mm-show' : '' }}">
+
+                                    @if (auth('admin')->user()->hasPermission('create-role'))
+                                        <li>
+                                            <a href="{{ route('roles.create') }}"
+                                                class="{{ request()->routeIs('roles.create') ? 'active' : '' }}">
+                                                Commission List
+                                            </a>
+                                        </li>
+                                    @endif
+
+                                </ul>
+                            </li>
+
+
+
+                            {{-- show withdraw list --}}
+
+                                  <li class="{{ $roleActive ? 'mm-active' : '' }}">
+                                <a href="javascript:void(0);"
+                                    class="has-arrow waves-effect {{ $roleActive ? 'mm-active' : '' }}">
+                                    <i class="fas fa-user-shield"></i>
+                                    <span>Withdraw List</span>
+                                </a>
+
+                                <ul class="sub-menu {{ $roleActive ? 'mm-show' : '' }}">
+
+                                    @if (auth('admin')->user()->hasPermission('create-role'))
+                                        <li>
+                                            <a href="{{ route('roles.create') }}"
+                                                class="{{ request()->routeIs('roles.create') ? 'active' : '' }}">
+                                                Withdraw List
+                                            </a>
+                                        </li>
+                                    @endif
+
+
+                                </ul>
+                            </li>
+                  
 
                         @if (auth('admin')->user()->hasPermission('create-permission') ||
                                 auth('admin')->user()->hasPermission('view-permission'))
