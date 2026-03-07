@@ -52,16 +52,16 @@
 
                                                 <button type="button"
                                                         class="btn btn-sm btn-danger"
-                                                        onclick="confirmDelete({{ $item->id }})">
+                                                        onclick="">
                                                     Delete
                                                 </button>
 
-                                                <form id="delete-form-{{ $item->id }}"
+                                                {{-- <form id="delete-form-{{ $item->id }}"
                                                     action="{{ route('enquiry.destroy', $item->id) }}"
                                                     method="POST" style="display:none;">
                                                     @csrf
                                                     @method('DELETE')
-                                                </form>
+                                                </form> --}}
                                             </td>
                                         </tr>
 

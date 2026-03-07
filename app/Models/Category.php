@@ -11,6 +11,6 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','slug','status','order'];
+    protected $fillable = ['name','slug','status','category_image','is_expert_category'];
 
 }

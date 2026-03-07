@@ -14,7 +14,7 @@ class HomeController extends Controller
     //
     public function index(){
         $videosdata = VideoModel::get();
-        $categories = Category::orderBy('order', 'asc')->get();
+        $categories = Category::where('status','1')->get();
         return view('frontend.index',compact('categories','videosdata'));
     }
 
@@ -56,7 +56,7 @@ class HomeController extends Controller
             'name'     => 'required|string|max:255',
             'email'    => 'required|email|unique:users,email',
             'password' => 'required|min:6|confirmed',
-            // 'gender'   => 'required|in:male,female,other',
+            
         ]);
 
         User::create([

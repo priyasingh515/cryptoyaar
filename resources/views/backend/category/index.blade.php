@@ -32,8 +32,8 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Category</th>
-                                    <th>Slug</th>
-                                    <th>Order</th>
+                                    <th>Image</th>
+                                    <th>Show in Become Expert</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -43,8 +43,6 @@
                                     @foreach ($categories as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-
-                                        {{-- CATEGORY (Top Level Parent ka naam) --}}
                                         <td>
                                             @if($item->parent_id === null)
                                                 {{ $item->name }}
@@ -55,8 +53,10 @@
                                             @endif
                                         </td>
 
-                                        <td>{{ $item->slug }}</td>
-                                        <td>{{ $item->order }}</td>
+                                        <td>
+                                            <img src="{{ asset('uploads/category/'.$item->category_image) }}" height="50" alt="Crypto Yaar">
+                                        </td>
+                                        <td>{{ $item->is_expert_category == 1 ? 'YES' : 'NO' }}</td>
 
                                         <td>
                                             <span class="badge {{ $item->status ? 'bg-success' : 'bg-danger' }}">

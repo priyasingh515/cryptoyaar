@@ -20,23 +20,36 @@ class CategoryController extends Controller
         return view('backend.category.create');
     }
 
+   
+
     public function store(Request $request)
     {
         $request->validate([
-            'name'   => 'required|string|max:255|unique:categories,name',
+            'name' => 'required|string|max:255|unique:categories,name',
             'status' => 'required|boolean',
-            'order'  => 'nullable|integer',
+            'category_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:512'
         ]);
 
         $category = new Category();
-        $category->name   = $request->name;
-        $category->slug   = Str::slug($request->name);
+        $category->name = $request->name;
+        $category->slug = Str::slug($request->name);
         $category->status = $request->status;
-        $category->order  = $request->order ?? 0;
+
+        $category->is_expert_category = $request->is_expert_category;
+
+        if ($request->hasFile('category_image')) {
+
+            $image = $request->file('category_image');
+            $imageName = time().'_'.$image->getClientOriginalName();
+            $image->move(public_path('uploads/category'), $imageName);
+
+            $category->category_image = $imageName;
+        }
+
         $category->save();
 
         return redirect()->route('category.index')
-            ->with('success', 'Category added successfully');
+            ->with('success','Category added successfully');
     }
 
 
@@ -50,19 +63,34 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
 
         $request->validate([
-            'name'   => 'required|string|max:255|unique:categories,name,' . $category->id,
+            'name' => 'required|string|max:255|unique:categories,name,' . $category->id,
             'status' => 'required|boolean',
-            'order'  => 'nullable|integer',
+            'category_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:512'
         ]);
 
-        $category->name   = $request->name;
-        $category->slug   = Str::slug($request->name);
+        $category->name = $request->name;
+        $category->slug = Str::slug($request->name);
         $category->status = $request->status;
-        $category->order  = $request->order ?? 0;
+
+        $category->is_expert_category = $request->is_expert_category;
+
+        if ($request->hasFile('category_image')) {
+
+            if ($category->category_image && file_exists(public_path('uploads/category/'.$category->category_image))) {
+                unlink(public_path('uploads/category/'.$category->category_image));
+            }
+
+            $image = $request->file('category_image');
+            $imageName = time().'_'.$image->getClientOriginalName();
+            $image->move(public_path('uploads/category'), $imageName);
+
+            $category->category_image = $imageName;
+        }
+
         $category->save();
 
         return redirect()->route('category.index')
-            ->with('success', 'Category updated successfully');
+            ->with('success','Category updated successfully');
     }
 
     public function destroy($id)

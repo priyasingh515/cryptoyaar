@@ -27,13 +27,11 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <form action="{{ route('category.store') }}" method="post">
+                        <form action="{{ route('category.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
-
                             <div class="card-body">
                                 <div class="row">
-
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-6 mb-3">
                                         <label class="form-label">Category Name</label>
                                         <input class="form-control"
                                             name="name"
@@ -46,8 +44,20 @@
                                         @enderror
                                     </div>
 
-                                    
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-6 mb-3">
+                                        <label>Category Image</label>
+                                        <input type="file" name="category_image" class="form-control">
+                                        <small class="text-muted">
+                                            Allowed: JPG, PNG, WEBP ,
+                                            Recommended size: 200x200 px ,
+                                            Max size: 500KB
+                                        </small>
+                                        @error('category_image')
+                                            <div class="text-danger mt-1">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="col-sm-6 mb-3">
                                         <label class="form-label">Status</label>
                                         <select name="status" class="form-control">
                                             <option value="1">Active</option>
@@ -59,10 +69,15 @@
                                         @enderror
                                     </div>
 
-                                    <div class="col-sm-3">
-                                        <label class="form-label">Order</label>
-                                        <input type="number" name="order" class="form-control"
-                                            value="{{ old('order', 0) }}">
+                                    <div class="col-sm-6 mb-3">
+                                        <label>Show in Become Expert</label>
+                                        <select name="is_expert_category" class="form-control">
+                                            <option value="0">No</option>
+                                            <option value="1">Yes</option>
+                                        </select>
+                                        @error('is_expert_category')
+                                            <div class="text-danger mt-1">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                 </div>
