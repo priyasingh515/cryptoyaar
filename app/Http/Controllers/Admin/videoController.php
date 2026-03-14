@@ -44,6 +44,7 @@ class VideoController extends Controller
         VideoModel::create([
             'title'       => $request->title,
             'description' => $request->description,
+            'keywords'    => $request->keywords,
             'category_id' => $request->category_id,
             'plan_id'     => $request->is_free ? null : $request->plan_id,
             'thumbnail' => $thumbnailPath,

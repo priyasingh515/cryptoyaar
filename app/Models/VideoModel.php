@@ -16,6 +16,7 @@ class VideoModel extends Model
         'plan_id',
         'title',
         'description',
+        'keywords',
         'video_path',
         'thumbnail',
         'is_free',

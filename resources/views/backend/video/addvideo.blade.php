@@ -31,9 +31,16 @@
                                 </select>
                             </div>
 
-                            <div class="mb-3 col-md-12">
+                            <div class="mb-3 col-md-6">
                                 <label>Description</label>
                                 <textarea name="description" class="form-control"></textarea>
+                            </div>
+
+                            <div class="mb-3 col-md-6">
+                                <label>keywords</label>
+                                <input type="text" name="keywords" class="form-control"
+                                    placeholder="ex: dance, hip hop, tutorial">
+                                    <small>Comma separated keywords</small>
                             </div>
 
                             <div class="mb-3 col-md-6">
