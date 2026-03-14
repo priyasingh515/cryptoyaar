@@ -27,6 +27,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/profile', [ProfileController::class, 'show']);
     Route::post('/profile/update', [ProfileController::class, 'update']);
+    Route::post('/whatsapp-updates', [ProfileController::class,'whatsappUpdates']);
 
     Route::get('/bank-details', [BankDetailController::class, 'show']);
     Route::post('/bank-details', [BankDetailController::class, 'store']);

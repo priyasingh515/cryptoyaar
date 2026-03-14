@@ -33,7 +33,7 @@ class AdminConroller extends Controller
     }
 
     public function creatorReq(){
-        $creators = CreatorRequest::with('user')->get();
+        $creators = CreatorRequest::with('user')->where('status','pending')->get();
         return view('backend.creator.index',compact('creators'));
     }
 
