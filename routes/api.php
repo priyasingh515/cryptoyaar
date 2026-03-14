@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\BankDetailController;
+use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\CreatorController;
 
 /*
@@ -33,10 +34,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/become-creator', [CreatorController::class, 'submit']);
     Route::get('/creator-request-status', [CreatorController::class, 'status']);
 
-   
-
+    Route::get('/faqs', [HomeController::class,'faqList']);
+    Route::get('/expert-categories', [HomeController::class,'expertCategories']);
     Route::post('/event/interested',[AuthController::class,'eventInterested']);
 });
 
 Route::post('/send-otp',[AuthController::class,'sendOtp']);
 Route::post('/verify-otp',[AuthController::class,'verifyOtp']);
+

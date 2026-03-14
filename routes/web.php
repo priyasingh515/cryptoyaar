@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\MlmMemberController;
 use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Admin\VideoController;
+use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\SupersubCategory;
@@ -177,6 +178,12 @@ Route::prefix('admin')->group(function () {
         Route::post('events/update/{id}', [EventController::class, 'update'])->name('event.update');
         Route::delete('events/{id}/destroy', [EventController::class, 'destroy'])->name('events.destroy');
 
+        Route::get('faq', [FaqController::class,'index'])->name('faq.index');
+        Route::get('faq/create', [FaqController::class,'create'])->name('faq.create');
+        Route::post('faq/store', [FaqController::class,'store'])->name('faq.store');
+        Route::get('faq/edit/{id}', [FaqController::class,'edit'])->name('faq.edit');
+        Route::post('faq/update/{id}', [FaqController::class,'update'])->name('faq.update');
+        Route::delete('faq/delete/{id}', [FaqController::class,'destroy'])->name('faq.destroy');
 
     });
 });

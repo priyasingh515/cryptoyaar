@@ -331,6 +331,37 @@
                                 </ul>
                             </li>
                         @endif
+                        
+                        @if (auth('admin')->user()->hasPermission('create-member') || auth('admin')->user()->hasPermission('view-member'))
+
+                            <li class="{{ $memberActive ? 'mm-active' : '' }}">
+                                <a href="javascript:void(0);"
+                                    class="has-arrow waves-effect {{ $memberActive ? 'mm-active' : '' }}">
+                                    <i class="bx bx-user"></i>
+                                    <span>FAq</span>
+                                </a>
+                                <ul class="sub-menu {{ $memberActive ? 'mm-show' : '' }}">
+
+                                    @if (auth('admin')->user()->hasPermission('create-member'))
+                                        <li>
+                                            <a href="{{ route('faq.create') }}"
+                                                class="{{ request()->routeIs('faq.create') ? 'active' : '' }}">
+                                                Add Faq
+                                            </a>
+                                        </li>
+                                    @endif
+
+                                    @if (auth('admin')->user()->hasPermission('view-member'))
+                                        <li>
+                                            <a href="{{ route('faq.index') }}"
+                                                class="{{ request()->routeIs('faq.index') ? 'active' : '' }}">
+                                                Faq List
+                                            </a>
+                                        </li>
+                                    @endif
+                                </ul>
+                            </li>
+                        @endif
 
                         @if (auth('admin')->user()->hasPermission('create-plan') || auth('admin')->user()->hasPermission('view-plan'))
 
