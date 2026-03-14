@@ -11,6 +11,7 @@ use App\Models\CommentModel;
 use App\Models\ContactEnquiry;
 use App\Models\VideoModel;
 use App\Models\CreatorRequest;
+use App\Models\EventInterest;
 
 
 class AdminConroller extends Controller
@@ -76,6 +77,23 @@ class AdminConroller extends Controller
         $usersList = User::where('role','user')->latest()->get();
         return view('backend.user_list',compact('usersList'));
     }
+
+    public function interested()
+    {
+        $interestUsers = EventInterest::with(['user','event'])->get();
+
+        return view('backend.event_interest',compact('interestUsers'));
+    }
+
+    public function creatorList()
+    {
+        $creatorList = CreatorRequest::with(['user'])->where('status','approved')->get();
+        return view('backend.creator.creator_list',compact('creatorList'));
+    }
+
+
+    
+
 
 
 

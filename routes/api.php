@@ -33,6 +33,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/become-creator', [CreatorController::class, 'submit']);
     Route::get('/creator-request-status', [CreatorController::class, 'status']);
 
+   
+
+    Route::post('/event/interested',[AuthController::class,'eventInterested']);
 });
 
 Route::post('/send-otp',[AuthController::class,'sendOtp']);

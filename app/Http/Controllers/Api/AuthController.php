@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Otp;
+use App\Models\EventInterest;
 
 class AuthController extends Controller
 {
@@ -59,6 +60,36 @@ class AuthController extends Controller
         return response()->json([
             'token' => $token,
             'user' => $user
+        ]);
+    }
+
+    
+    public function eventInterested(Request $request)
+    {
+        $request->validate([
+            'event_id' => 'required',
+            'user_id' => 'required'
+        ]);
+
+        $check = EventInterest::where('event_id',$request->event_id)
+                    ->where('user_id',$request->user_id)
+                    ->first();
+
+        if($check){
+            return response()->json([
+                'status'=>false,
+                'message'=>'Already Interested'
+            ]);
+        }
+
+        EventInterest::create([
+            'event_id'=>$request->event_id,
+            'user_id'=>$request->user_id
+        ]);
+
+        return response()->json([
+            'status'=>true,
+            'message'=>'Interest Added Successfully'
         ]);
     }
 

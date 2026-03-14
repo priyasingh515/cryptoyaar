@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\VideoController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\SupersubCategory;
+use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LikeController;
 use Illuminate\Support\Facades\Route;
@@ -47,8 +48,10 @@ Route::prefix('admin')->group(function () {
         Route::get('creatorlist', [AdminConroller::class, 'creatorReq'])->name('admin.creatorlist');
         Route::put('/creator-status/{id}', [AdminConroller::class, 'updateStatus'])
             ->name('creator.status.update');
-
+        Route::get('/users', [AdminConroller::class, 'userList'])->name('userlist'); 
         Route::get('/enquiry', [AdminConroller::class, 'enquiryList'])->name('enquirylist');
+        Route::get('/event/interested/', [AdminConroller::class, 'interested'])->name('event.interested');
+        Route::get('/creator/list/', [AdminConroller::class, 'creatorList'])->name('creator.list');
         Route::delete('enquiry/{id}/destroy', [AdminConroller::class, 'enquirydestroy'])->name('enquiry.destroy');
 
         Route::post('logout', [AuthController::class, 'logout'])->name('admin.logout');
@@ -164,5 +167,16 @@ Route::prefix('admin')->group(function () {
 
         Route::get('supersubcategory/{slug}/edit', [SupersubCategory::class, 'edit'])->name('supersubcategory.edit');
         Route::post('supersubcategory/{id}/update', [SupersubCategory::class, 'update'])->name('supersubcategory.update');
+
+        //events
+
+        Route::get('events', [EventController::class, 'index'])->name('event.index');
+        Route::get('events/create', [EventController::class, 'create'])->name('event.create');
+        Route::post('events/store', [EventController::class, 'store'])->name('event.store');
+        Route::get('events/edit/{id}', [EventController::class, 'edit'])->name('event.edit');
+        Route::post('events/update/{id}', [EventController::class, 'update'])->name('event.update');
+        Route::delete('events/{id}/destroy', [EventController::class, 'destroy'])->name('events.destroy');
+
+
     });
 });

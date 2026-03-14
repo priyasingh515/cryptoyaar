@@ -54,4 +54,7 @@ class CreatorController extends Controller
             auth()->user()->creatorRequest
         );
     }
+
+
+    
 }

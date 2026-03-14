@@ -50,14 +50,22 @@
                             </div>
 
                             {{-- REPLACE VIDEO --}}
-                            <div class="mb-3 col-md-6">
+                            <div class="mb-3 col-md-6 text-center">
                                 <label>Replace Video</label>
                                 <input type="file" name="video" class="form-control">
+                                    {{-- <span class="me-2">{{ $video->views }}</span> --}}
+                                    <button class="btn btn-link text-primary p-0 play-video"
+                                        data-video="{{ asset('storage/'.$video->video_path) }}"
+                                        data-title="{{ $video->title }}">
+                                        <i class="bx bx-play-circle font-size-22"></i>
+                                    </button>
+                                
                             </div>
 
                             <div class="mb-3 col-md-6">
                                 <label>thumbnail image</label>
                                 <input type="file" name="thumbnail" class="form-control">
+                                <img src="{{asset('storage/'.$video->thumbnail)}}" alt="" height="50">
                             </div>
 
                             {{-- VIDEO TYPE --}}

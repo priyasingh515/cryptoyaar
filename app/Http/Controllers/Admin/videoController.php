@@ -19,7 +19,7 @@ class VideoController extends Controller
 
     public function create()
     {
-        $categories = Category::where('status', 1)->orderBy('order')->get();
+        $categories = Category::where('status', 1)->get();
         $plans = PlanModel::where('status', 'active')->get();
 
         return view('backend.video.addvideo', compact('categories', 'plans'));
@@ -59,7 +59,7 @@ class VideoController extends Controller
     public function edit($id)
     {
         $video = VideoModel::findOrFail($id);
-        $categories = Category::where('status', 1)->orderBy('order')->get();
+        $categories = Category::where('status', 1)->get();
         $plans = PlanModel::where('status', 'active')->get();
 
         return view('backend.video.edit', compact('video', 'categories', 'plans'));

@@ -219,6 +219,28 @@
                             </a>
                         </li>
 
+                        
+                        @if (auth('admin')->user()->hasPermission('enquiry-list'))
+
+                            <li class="{{ $enquiryActive ? 'mm-active' : '' }}">
+                                <a href="{{ route('enquirylist') }}"
+                                    class="{{ request()->routeIs('enquirylist') ? 'active' : '' }}">
+                                    <i class="bx bx-user"></i>
+                                    <span>Enquiry</span>
+                                </a>
+                            </li>
+                        @endif
+                        @if (auth('admin')->user()->hasPermission('enquiry-list'))
+
+                            <li class="{{ $enquiryActive ? 'mm-active' : '' }}">
+                                <a href="{{ route('event.interested') }}"
+                                    class="{{ request()->routeIs('event.interested') ? 'active' : '' }}">
+                                    <i class="bx bx-user"></i>
+                                    <span>Events Interested User</span>
+                                </a>
+                            </li>
+                        @endif
+
                         @if (auth('admin')->user()->hasPermission('creator-request'))
 
                             <li class="{{ $creatorActive ? 'mm-active' : '' }}">
@@ -237,24 +259,41 @@
                                             </a>
                                         </li>
                                     @endif
+                                    @if (auth('admin')->user()->hasPermission('creator-request'))
+                                        <li>
+                                            <a href="{{ route('creator.list') }}"
+                                                class="{{ request()->routeIs('admin.creatorlist') ? 'active' : '' }}">
+                                                Creator List
+                                            </a>
+                                        </li>
+                                    @endif
                                 </ul>
                             </li>
                         @endif
+
                         @if (auth('admin')->user()->hasPermission('enquiry-list'))
 
                             <li class="{{ $enquiryActive ? 'mm-active' : '' }}">
                                 <a href="javascript:void(0);"
                                     class="has-arrow waves-effect {{ $enquiryActive ? 'mm-active' : '' }}">
                                     <i class="bx bx-user"></i>
-                                    <span>Enquiry</span>
+                                    <span>Events</span>
                                 </a>
                                 <ul class="sub-menu {{ $enquiryActive ? 'mm-show' : '' }}">
 
                                     @if (auth('admin')->user()->hasPermission('creator-request'))
                                         <li>
-                                            <a href="{{ route('enquirylist') }}"
-                                                class="{{ request()->routeIs('enquirylist') ? 'active' : '' }}">
-                                                Enquiry List
+                                            <a href="{{ route('event.create') }}"
+                                                class="{{ request()->routeIs('event.create') ? 'active' : '' }}">
+                                                Add Event
+                                            </a>
+                                        </li>
+                                    @endif
+                                    @if (auth('admin')->user()->hasPermission('creator-request'))
+                                        <li>
+                                            <a href="{{ route('event.index') }}"
+                                                class="{{ request()->routeIs('event.index') ? 'active' : '' }}">
+                                                Events List
                                             </a>
                                         </li>
                                     @endif
