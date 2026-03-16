@@ -113,6 +113,9 @@ Route::prefix('admin')->group(function () {
         Route::put('/videos/{id}/update', [VideoController::class, 'update'])->name('admin.videos.update');
         Route::delete('/videos/{id}/delete', [VideoController::class, 'destroy'])->name('admin.videos.destroy');
 
+        Route::get('/get-subcategories/{id}',[VideoController::class,'getSubCategories']);
+        Route::get('/get-super-subcategories/{id}',[VideoController::class,'getSuperSubCategories']);
+        
         // likes
         Route::post('/videos/{videoId}/like', [LikeController::class, 'toggle'])
             ->name('admin.video.like');

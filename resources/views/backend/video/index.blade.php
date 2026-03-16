@@ -31,6 +31,8 @@
                                         <th>ID</th>
                                         <th>Title</th>
                                         <th>Category</th>
+                                        <th>Sub Category</th>
+                                        <th>Super Sub Category</th>
                                         <th>Type</th>
                                         <th>Plan</th>
                                         <th>Play</th>
@@ -46,6 +48,8 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $video->title }}</td>
                                             <td>{{ $video->category->name ?? 'N/A' }}</td>
+                                            <td>{{ $video->subcategory->name ?? 'N/A' }}</td>
+                                            <td>{{ $video->supercategory->name ?? 'N/A' }}</td>
                                             <td>
                                                 @if($video->is_free)
                                                     <span class="badge bg-success">Free</span>

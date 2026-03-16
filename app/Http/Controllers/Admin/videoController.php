@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Category;
 use App\Models\PlanModel;
 use App\Models\VideoModel;
+use App\Models\SupCategory;
+use App\Models\supSubCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -20,9 +22,27 @@ class VideoController extends Controller
     public function create()
     {
         $categories = Category::where('status', 1)->get();
+        $subcategories = SupCategory::where('status', 1)->get();
+        $supercategories = supSubCategory::where('status', 1)->get();
         $plans = PlanModel::where('status', 'active')->get();
+        return view('backend.video.addvideo', compact('categories', 'plans','subcategories','supercategories'));
+    }
 
-        return view('backend.video.addvideo', compact('categories', 'plans'));
+    public function getSubCategories($id)
+    {
+        $sub = SupCategory::where('category_id',$id)->get();
+        // dd($sub);
+
+        return response()->json($sub);
+    }
+
+
+    public function getSuperSubCategories($id)
+    {
+        $super = supSubCategory::where('sub_category_id',$id)->get();
+        // dd($super);
+
+        return response()->json($super);
     }
 
     public function store(Request $request)
@@ -46,6 +66,8 @@ class VideoController extends Controller
             'description' => $request->description,
             'keywords'    => $request->keywords,
             'category_id' => $request->category_id,
+            'subcategory_id' => $request->subcategory_id,
+            'super_subcategory_id' => $request->super_subcategory_id,
             'plan_id'     => $request->is_free ? null : $request->plan_id,
             'thumbnail' => $thumbnailPath,
             'video_path'  => $videoPath,
@@ -98,6 +120,8 @@ class VideoController extends Controller
             'title'       => $request->title,
             'description' => $request->description,
             'category_id' => $request->category_id,
+            'subcategory_id' => $request->subcategory_id,
+            'super_subcategory_id' => $request->super_subcategory_id,
             'plan_id'     => $request->is_free ? null : $request->plan_id,
             'is_free'     => $request->is_free,
             'status'      => $request->status,

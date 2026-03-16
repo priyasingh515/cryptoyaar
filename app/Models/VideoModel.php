@@ -13,6 +13,8 @@ class VideoModel extends Model
 
     protected $fillable = [
         'category_id',
+        'subcategory_id',
+        'super_subcategory_id',
         'plan_id',
         'title',
         'description',
@@ -31,7 +33,17 @@ class VideoModel extends Model
 
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class, 'category_id');
+    }
+
+    public function subcategory()
+    {
+        return $this->belongsTo(SupCategory::class, 'subcategory_id');
+    }
+
+    public function supercategory()
+    {
+        return $this->belongsTo(supSubCategory::class, 'sub_category_id');
     }
 
     public function plan()
