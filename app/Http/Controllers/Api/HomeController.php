@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
  use App\Models\Faq;
  use App\Models\Category;
+ use App\Models\PlanModel;
  use App\Models\EventInterest;
 use Illuminate\Http\Request;
 
@@ -62,6 +63,15 @@ class HomeController extends Controller
         return response()->json([
             'status'=>true,
             'message'=>'Interest Added Successfully'
+        ]);
+    }
+
+    public function planfetch()
+    {
+        $plans = PlanModel::where('status', 1)->get();
+
+        return response()->json([
+            'data' => $plans
         ]);
     }
 

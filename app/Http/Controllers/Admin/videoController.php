@@ -74,6 +74,7 @@ class VideoController extends Controller
             'is_free'     => $request->is_free,
             'status'      => 1,
             'views'       => 0,
+            'uploaded_by' => 'admin',
         ]);
 
         return redirect()->route('admin.videos.index')->with('success', 'Video added successfully');

@@ -33,7 +33,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/bank-details', [BankDetailController::class, 'store']);
 
     Route::post('/become-creator', [CreatorController::class, 'submit']);
+    Route::post('/create/video', [CreatorController::class, 'add_video']);
     Route::get('/creator-request-status', [CreatorController::class, 'status']);
+
+
+    Route::get('/plan-list', [HomeController::class, 'planfetch']);
 
     Route::get('/faqs', [HomeController::class,'faqList']);
     Route::get('/expert-categories', [HomeController::class,'expertCategories']);

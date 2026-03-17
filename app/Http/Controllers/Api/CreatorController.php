@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\CreatorRequest;
+use App\Models\VideoModel;
+
 
 class CreatorController extends Controller
 {
@@ -54,6 +56,48 @@ class CreatorController extends Controller
             auth()->user()->creatorRequest
         );
     }
+
+    public function add_video(Request $request)
+    {
+        $request->validate([
+            'title'       => 'required|string|max:255',
+            'category_id' => 'required|exists:categories,id',
+            'video'       => 'required|mimes:mp4,mkv,avi,webm|max:512000',
+            'thumbnail'   => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'is_free'     => 'required|boolean',
+            'plan_id'     => 'required_if:is_free,0|nullable|exists:plans,id',
+        ]);
+
+        $videoPath = $request->file('video')->store('videos', 'public');
+
+        $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
+
+        $video = VideoModel::create([
+            'title'       => $request->title,
+            'description' => $request->description,
+            'keywords'    => $request->keywords,
+            'category_id' => $request->category_id,
+            'subcategory_id' => $request->subcategory_id,
+            'super_subcategory_id' => $request->super_subcategory_id,
+            'plan_id'     => $request->is_free ? null : $request->plan_id,
+            'thumbnail'   => $thumbnailPath,
+            'video_path'  => $videoPath,
+            'is_free'     => $request->is_free,
+
+            'creator_id'  => auth()->id(),
+            'uploaded_by' => 'creator',
+            'status'      => '0',
+            'views'       => 0,
+        ]);
+
+        return response()->json([
+            'status'  => true,
+            'message' => 'Video uploaded successfully, waiting for approval',
+            'data'    => $video
+        ]);
+    }
+
+
 
 
     

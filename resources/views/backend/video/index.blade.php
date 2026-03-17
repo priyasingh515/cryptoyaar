@@ -30,14 +30,15 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Title</th>
+                                        <th>Uploaded By</th>
                                         <th>Category</th>
                                         <th>Sub Category</th>
                                         <th>Super Sub Category</th>
                                         <th>Type</th>
                                         <th>Plan</th>
+                                        <th>Status</th>
                                         <th>Play</th>
                                         <th>Thumbnail Image</th>
-                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -47,6 +48,7 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $video->title }}</td>
+                                            <td>{{ $video->uploaded_by }}</td>
                                             <td>{{ $video->category->name ?? 'N/A' }}</td>
                                             <td>{{ $video->subcategory->name ?? 'N/A' }}</td>
                                             <td>{{ $video->supercategory->name ?? 'N/A' }}</td>
@@ -64,6 +66,14 @@
                                                     <span class="text-muted">—</span>
                                                 @endif
                                             </td>
+                                            
+                                            <td>
+                                                @if($video->status)
+                                                    <span class="badge bg-success">Active</span>
+                                                @else
+                                                    <span class="badge bg-danger">Inactive</span>
+                                                @endif
+                                            </td>
                                             <td class="text-center">
                                                 {{-- <span class="me-2">{{ $video->views }}</span> --}}
                                                 <button class="btn btn-link text-primary p-0 play-video"
@@ -75,13 +85,7 @@
                                             <td>
                                                 <img src="{{asset('storage/'.$video->thumbnail)}}" height="100" alt="Thumbnail">
                                             </td>
-                                            <td>
-                                                @if($video->status)
-                                                    <span class="badge bg-success">Active</span>
-                                                @else
-                                                    <span class="badge bg-danger">Inactive</span>
-                                                @endif
-                                            </td>
+                                            
                                             <td>
                                                 <a href="{{ route('admin.videos.edit', $video->id) }}"
                                                    class="btn btn-sm btn-warning">Edit</a>

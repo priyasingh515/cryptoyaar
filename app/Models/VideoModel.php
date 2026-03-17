@@ -24,6 +24,8 @@ class VideoModel extends Model
         'is_free',
         'status',
         'views',
+        'uploaded_by',
+        'creator_id',
     ];
 
     protected $casts = [
@@ -87,7 +89,7 @@ class VideoModel extends Model
     }
 
     public function comments()
-{
-    return $this->hasMany(CommentModel::class, 'video_id');
-}
+    {
+        return $this->hasMany(CommentModel::class, 'video_id');
+    }
 }
