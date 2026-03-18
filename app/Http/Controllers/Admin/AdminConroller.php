@@ -12,6 +12,7 @@ use App\Models\ContactEnquiry;
 use App\Models\VideoModel;
 use App\Models\CreatorRequest;
 use App\Models\EventInterest;
+use Illuminate\Support\Facades\DB;
 
 
 class AdminConroller extends Controller
@@ -91,11 +92,21 @@ class AdminConroller extends Controller
         return view('backend.creator.creator_list',compact('creatorList'));
     }
 
+    public function planPurchase()
+    {
+        $plans = DB::table('user_plans')
+            ->join('users', 'user_plans.user_id', '=', 'users.id')
+            ->join('plans', 'user_plans.plan_id', '=', 'plans.id')
+            ->select(
+                'user_plans.*',
+                'users.name as user_name',
+                'plans.plan_name as plan_name',
+                'plans.price'
+            )
+            ->latest()
+            ->get();
 
-    
-
-
-
-
-
+        return view('backend.plans.purchaselist', compact('plans'));
+    }
+   
 }

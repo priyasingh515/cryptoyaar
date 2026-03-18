@@ -27,10 +27,9 @@ class AuthController extends Controller
             ]
         );
 
-        // SMS gateway yahan lagega
         return response()->json([
             'status' => true,
-            'otp' => $otp // testing ke liye
+            'otp' => $otp 
         ]);
     }
 

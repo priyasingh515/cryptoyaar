@@ -54,7 +54,8 @@ Route::prefix('admin')->group(function () {
         Route::get('/event/interested/', [AdminConroller::class, 'interested'])->name('event.interested');
         Route::get('/creator/list/', [AdminConroller::class, 'creatorList'])->name('creator.list');
         Route::delete('enquiry/{id}/destroy', [AdminConroller::class, 'enquirydestroy'])->name('enquiry.destroy');
-
+        Route::get('plans/purchase', [AdminConroller::class, 'planPurchase'])->name('plan.purchase');
+        
         Route::post('logout', [AuthController::class, 'logout'])->name('admin.logout');
         // Role
         Route::get('roles', [RoleController::class, 'index'])->name('roles.index');
@@ -101,6 +102,7 @@ Route::prefix('admin')->group(function () {
             ->name('plans.store');
         Route::get('plan/view', [PlanController::class, 'index'])->name('plan.index');
         Route::get('plans/{id}/edit', [PlanController::class, 'edit'])->name('plan.edit');
+        
         Route::put('plans/{plan}/update', [PlanController::class, 'update'])->name('plan.update');
         Route::delete('plans/{id}', [PlanController::class, 'destroy'])
             ->name('plan.destroy');

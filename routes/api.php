@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\BankDetailController;
+use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\CreatorController;
 
@@ -36,6 +37,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/create/video', [CreatorController::class, 'add_video']);
     Route::get('/creator-request-status', [CreatorController::class, 'status']);
 
+    Route::post('/create-order', [PaymentController::class, 'createOrder']);
+    Route::post('/verify-payment', [PaymentController::class, 'verifyPayment']);
 
     Route::get('/plan-list', [HomeController::class, 'planfetch']);
 

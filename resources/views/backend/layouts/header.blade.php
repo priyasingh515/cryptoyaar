@@ -390,6 +390,14 @@
                                                 Plan List
                                             </a>
                                         </li>
+                                    @endif 
+                                    @if (auth('admin')->user()->hasPermission('view-plan'))
+                                        <li>
+                                            <a href="{{ route('plan.purchase') }}"
+                                                class="{{ request()->routeIs('plan.purchase') ? 'active' : '' }}">
+                                                Plan purchase users
+                                            </a>
+                                        </li>
                                     @endif
 
                                 </ul>
