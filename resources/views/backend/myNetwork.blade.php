@@ -43,7 +43,7 @@
                                 <tbody>
                                     @foreach ($users as $user)
                                         @if (!$user->parent_id)
-                                            @include('backend.partials.user-row', [
+                                            @include('backend.partials', [
                                                 'user' => $user,
                                                 'level' => 1
                                             ])

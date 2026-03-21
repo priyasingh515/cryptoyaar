@@ -71,7 +71,7 @@
 
 @if ($user->referrals && $user->referrals->count())
     @foreach ($user->referrals as $child)
-        @include('backend.partials.user-row', [
+        @include('backend.partials', [
             'user' => $child,
             'level' => $level + 1,
         ])
