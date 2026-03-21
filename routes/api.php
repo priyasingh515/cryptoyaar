@@ -39,6 +39,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('/create-order', [PaymentController::class, 'createOrder']);
     Route::post('/verify-payment', [PaymentController::class, 'verifyPayment']);
+    
 
     Route::get('/plan-list', [HomeController::class, 'planfetch']);
 
@@ -49,4 +50,4 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::post('/send-otp',[AuthController::class,'sendOtp']);
 Route::post('/verify-otp',[AuthController::class,'verifyOtp']);
-
+Route::post('/watch_time', [HomeController::class, 'storeWatchTime'])->name('store-watch-time');

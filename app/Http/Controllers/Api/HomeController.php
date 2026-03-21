@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
  use App\Models\Faq;
  use App\Models\Category;
  use App\Models\PlanModel;
+ use App\Models\VideoView;
  use App\Models\EventInterest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -73,6 +75,69 @@ class HomeController extends Controller
         return response()->json([
             'data' => $plans
         ]);
+    }
+
+    // public function storeWatchTime(Request $request)
+    // {
+    //     if ($request->watch_time < 30) {
+    //         return response()->json(['status' => false]);
+    //     }
+
+    //     DB::table('video_views')->updateOrInsert(
+    //         [
+    //             'session_id' => $request->session_id
+    //         ],
+    //         [
+    //             'user_id' => 3, // testing
+    //             'video_id' => $request->video_id,
+    //             'watch_time' => $request->watch_time,
+    //             'is_valid' => 1,
+    //             'updated_at' => now(),
+    //             'created_at' => now()
+    //         ]
+    //     );
+
+    //     return response()->json(['status' => true]);
+    // }
+
+    public function storeWatchTime(Request $request)
+    {
+        $userId = 3; // testing (baad me auth()->id())
+
+        if ($request->watch_time < 30) {
+            return response()->json(['status' => false]);
+        }
+
+        $existing = DB::table('video_views')
+            ->where('user_id', $userId)
+            ->where('video_id', $request->video_id)
+            ->first();
+
+        if ($existing) {
+
+            // 🔥 sirf tab update jab new time bada ho
+            if ($request->watch_time > $existing->watch_time) {
+
+                DB::table('video_views')
+                    ->where('id', $existing->id)
+                    ->update([
+                        'watch_time' => $request->watch_time,
+                        'updated_at' => now()
+                    ]);
+            }
+
+        } else {
+
+            DB::table('video_views')->insert([
+                'user_id' => $userId,
+                'video_id' => $request->video_id,
+                'watch_time' => $request->watch_time,
+                'is_valid' => 1,
+                'created_at' => now()
+            ]);
+        }
+
+        return response()->json(['status' => true]);
     }
 
 }

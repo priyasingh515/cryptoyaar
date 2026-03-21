@@ -39,6 +39,10 @@ class HomeController extends Controller
         return view('frontend.terms');
     }
 
+    public function testing(){
+        return view('frontend.testingpage');
+    }
+
     public function videodetails($id){
         $video = VideoModel::findOrFail($id);
         $relatedVideos = VideoModel::where('category_id', $video->category_id)

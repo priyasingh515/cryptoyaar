@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\CreatorRequest;
 use App\Models\VideoModel;
+use App\Models\VideoView;
 
 
 class CreatorController extends Controller
@@ -96,6 +97,8 @@ class CreatorController extends Controller
             'data'    => $video
         ]);
     }
+
+    
 
 
 
