@@ -218,7 +218,12 @@
                                 <span>Users</span>
                             </a>
                         </li>
-
+                        <li class="{{ request()->routeIs('my.network') ? 'mm-active' : '' }}">
+                            <a href="{{ route('my.network') }}" class="waves-effect">
+                                <i class='bx bxs-dashboard'></i>
+                                <span>My Network</span>
+                            </a>
+                        </li>
                         
                         @if (auth('admin')->user()->hasPermission('enquiry-list'))
 

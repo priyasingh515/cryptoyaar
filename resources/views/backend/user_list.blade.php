@@ -12,7 +12,6 @@
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                {{-- <li class="breadcrumb-item"><a href="javascript: void(0);">Tables</a></li> --}}
                                 <li class="breadcrumb-item active">Users List</li>
                             </ol>
                         </div>
@@ -26,7 +25,9 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Users List</h4>
+
+                            <a href="{{ route('user.add') }}" class="btn btn-primary mb-3">Add User</a>
+
                             <table id="datatable" class="table table-bordered dt-responsive nowrap w-100">
                                 <thead>
                                 <tr>
@@ -34,59 +35,64 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
-                                    {{-- <th>Message</th> --}}
+                                    <th>Referral Code</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
 
                                 <tbody>
-                                    @foreach ($usersList as $item)
+                                    @forelse ($usersList as $item)
                                         <tr>
-                                            <td>{{$loop->iteration}}</td>
-                                            <td>{{ $item->name}}</td>
-                                            <td>{{ $item->email}}</td>
-                                            <td>{{ $item->Phone}}</td>
-                                            {{-- <td>{{$item->message}}</td> --}}
-                                            
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $item->name }}</td>
+                                            <td>{{ $item->email }}</td>
+
+                                            <td>{{ $item->phone }}</td>
+
+                                            <td>{{ $item->referral_code ?? 'N/A' }}</td>
+
                                             <td>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-info"
+                                                        onclick="window.location.href='{{ route('user.edit', $item->id) }}'">
+                                                    Edit
+                                                </button>
 
                                                 <button type="button"
                                                         class="btn btn-sm btn-danger"
-                                                        onclick="">
+                                                        onclick="confirmDelete({{ $item->id }})">
                                                     Delete
                                                 </button>
 
-                                                {{-- <form id="delete-form-{{ $item->id }}"
-                                                    action="{{ route('enquiry.destroy', $item->id) }}"
-                                                    method="POST" style="display:none;">
+                                                <form id="delete-form-{{ $item->id }}"
+                                                      action="{{ route('user.destroy', $item->id) }}"
+                                                      method="POST" style="display:none;">
                                                     @csrf
                                                     @method('DELETE')
-                                                </form> --}}
+                                                </form>
                                             </td>
                                         </tr>
-
-                                    @endforeach
+                                    @empty
+                                        <tr>
+                                            <td colspan="6" class="text-center">No Users Found</td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
 
                         </div>
-                        <!-- end card-body -->
                     </div>
-                    <!-- end card -->
-                </div> <!-- end col -->
-            </div> <!-- end row -->
+                </div>
+            </div>
 
-            
-        </div> <!-- container-fluid -->
+        </div>
     </div>
-    <!-- End Page-content -->
-
 
     <script>
         function confirmDelete(id) {
             Swal.fire({
                 title: 'Are you sure?',
-                text: "This category will be deleted!",
+                text: "User will be deleted!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',

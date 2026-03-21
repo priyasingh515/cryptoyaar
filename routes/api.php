@@ -1,13 +1,16 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\BankDetailController;
+use App\Http\Controllers\Api\CreatorController;
+use App\Http\Controllers\Api\HomeController;
+use App\Http\Controllers\Api\PaymentController;
+use App\Http\Controllers\Api\PlanController;
+use App\Http\Controllers\Api\ProfileController;
+use App\Http\Controllers\API\ReferralController;
+use App\Http\Controllers\API\RefundController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\Api\ProfileController;
-use App\Http\Controllers\Api\BankDetailController;
-use App\Http\Controllers\Api\PaymentController;
-use App\Http\Controllers\Api\HomeController;
-use App\Http\Controllers\Api\CreatorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +31,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/profile', [ProfileController::class, 'show']);
     Route::post('/profile/update', [ProfileController::class, 'update']);
-    Route::post('/whatsapp-updates', [ProfileController::class,'whatsappUpdates']);
+    Route::post('/whatsapp-updates', [ProfileController::class, 'whatsappUpdates']);
+
 
     Route::get('/bank-details', [BankDetailController::class, 'show']);
     Route::post('/bank-details', [BankDetailController::class, 'store']);
@@ -42,11 +46,17 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/plan-list', [HomeController::class, 'planfetch']);
 
-    Route::get('/faqs', [HomeController::class,'faqList']);
-    Route::get('/expert-categories', [HomeController::class,'expertCategories']);
-    Route::post('/event/interested',[AuthController::class,'eventInterested']);
+    Route::get('/faqs', [HomeController::class, 'faqList']);
+    Route::get('/expert-categories', [HomeController::class, 'expertCategories']);
+    Route::post('/event/interested', [AuthController::class, 'eventInterested']);
+
+
+
+    Route::get('/my-network', [ReferralController::class, 'myNetwork']);
+    Route::post('/plan/purchase', [PlanController::class, 'purchase']);
+    Route::post('/user/referral', [ReferralController::class, 'referralUser']);
+    Route::post('/refund', [RefundController::class, 'refund']);
 });
 
-Route::post('/send-otp',[AuthController::class,'sendOtp']);
-Route::post('/verify-otp',[AuthController::class,'verifyOtp']);
-
+Route::post('/send-otp', [AuthController::class, 'sendOtp']);
+Route::post('/verify-otp', [AuthController::class, 'verifyOtp']);

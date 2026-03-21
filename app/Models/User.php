@@ -17,14 +17,19 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
     protected $fillable = [
         'name',
         'email',
-        'password',
         'phone',
+        'referral_code',
+        'referred_by',
+        'parent_id',
+        'left_child',
+        'right_child',
         'role',
-        'pan_no',
-        'occupation'
+        'occupation',
+        'password'
     ];
 
     /**
@@ -45,6 +50,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'plan_purchase_date' => 'datetime',
+
     ];
     public function videoLikes()
     {
@@ -53,7 +60,45 @@ class User extends Authenticatable
 
     public function bankDetail()
     {
-        return $this->hasOne(BankDetail::class); 
+        return $this->hasOne(BankDetail::class);
     }
 
+    public function referrer()
+    {
+        return $this->belongsTo(User::class, 'referred_by');
+    }
+
+    public function referrals()
+    {
+        return $this->hasMany(User::class, 'referred_by');
+    }
+
+    public function wallet()
+    {
+        return $this->hasOne(Wallet::class);
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany(WalletTransaction::class);
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(User::class, 'referred_by');
+    }
+    public function leftChild()
+    {
+        return $this->belongsTo(User::class, 'left_child');
+    }
+
+    public function rightChild()
+    {
+        return $this->belongsTo(User::class, 'right_child');
+    }
+
+    public function parentUser()
+    {
+        return $this->belongsTo(User::class, 'referred_by');
+    }
 }

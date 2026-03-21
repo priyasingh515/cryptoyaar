@@ -49,13 +49,22 @@ Route::prefix('admin')->group(function () {
         Route::get('creatorlist', [AdminConroller::class, 'creatorReq'])->name('admin.creatorlist');
         Route::put('/creator-status/{id}', [AdminConroller::class, 'updateStatus'])
             ->name('creator.status.update');
-        Route::get('/users', [AdminConroller::class, 'userList'])->name('userlist'); 
+        Route::get('/users', [AdminConroller::class, 'userList'])->name('userlist');
+        Route::get('/my-network', [AdminConroller::class, 'myNetwork'])->name('my.network');
+        Route::post('/refund/{id}', [AdminConroller::class, 'refund'])->name('user.refund');
+        Route::get('/users/create', [AdminConroller::class, 'usercreate'])->name('user.add');
+        Route::post('/users/store', [AdminConroller::class, 'userStore'])->name('user.store');
+        Route::post('/users/store-referral', [AdminConroller::class, 'userStoreReferral'])->name('user.store-referral');
+        Route::post('/users/storeplan', [AdminConroller::class, 'userStoreplan'])->name('user.storeplan');
+        Route::get('/users/{id}/edit', [AdminConroller::class, 'editUser'])->name('user.edit');
+        Route::put('/users/{id}/update', [AdminConroller::class, 'updateUser'])->name('user.update');
+        Route::delete('/users/{id}/destroy', [AdminConroller::class, 'destroyUser'])->name('user.destroy');
         Route::get('/enquiry', [AdminConroller::class, 'enquiryList'])->name('enquirylist');
         Route::get('/event/interested/', [AdminConroller::class, 'interested'])->name('event.interested');
         Route::get('/creator/list/', [AdminConroller::class, 'creatorList'])->name('creator.list');
         Route::delete('enquiry/{id}/destroy', [AdminConroller::class, 'enquirydestroy'])->name('enquiry.destroy');
         Route::get('plans/purchase', [AdminConroller::class, 'planPurchase'])->name('plan.purchase');
-        
+
         Route::post('logout', [AuthController::class, 'logout'])->name('admin.logout');
         // Role
         Route::get('roles', [RoleController::class, 'index'])->name('roles.index');
@@ -81,7 +90,7 @@ Route::prefix('admin')->group(function () {
 
         // commission histroy
         Route::get('member/commission', [MlmMemberController::class, 'commission'])->name('members.commission');
-      
+
         // member withdraw
 
         Route::get('mlm/members', [MlmMemberController::class, 'index'])->name('mlm.members.index');
@@ -102,7 +111,7 @@ Route::prefix('admin')->group(function () {
             ->name('plans.store');
         Route::get('plan/view', [PlanController::class, 'index'])->name('plan.index');
         Route::get('plans/{id}/edit', [PlanController::class, 'edit'])->name('plan.edit');
-        
+
         Route::put('plans/{plan}/update', [PlanController::class, 'update'])->name('plan.update');
         Route::delete('plans/{id}', [PlanController::class, 'destroy'])
             ->name('plan.destroy');
@@ -115,9 +124,9 @@ Route::prefix('admin')->group(function () {
         Route::put('/videos/{id}/update', [VideoController::class, 'update'])->name('admin.videos.update');
         Route::delete('/videos/{id}/delete', [VideoController::class, 'destroy'])->name('admin.videos.destroy');
 
-        Route::get('/get-subcategories/{id}',[VideoController::class,'getSubCategories']);
-        Route::get('/get-super-subcategories/{id}',[VideoController::class,'getSuperSubCategories']);
-        
+        Route::get('/get-subcategories/{id}', [VideoController::class, 'getSubCategories']);
+        Route::get('/get-super-subcategories/{id}', [VideoController::class, 'getSuperSubCategories']);
+
         // likes
         Route::post('/videos/{videoId}/like', [LikeController::class, 'toggle'])
             ->name('admin.video.like');
@@ -183,12 +192,11 @@ Route::prefix('admin')->group(function () {
         Route::post('events/update/{id}', [EventController::class, 'update'])->name('event.update');
         Route::delete('events/{id}/destroy', [EventController::class, 'destroy'])->name('events.destroy');
 
-        Route::get('faq', [FaqController::class,'index'])->name('faq.index');
-        Route::get('faq/create', [FaqController::class,'create'])->name('faq.create');
-        Route::post('faq/store', [FaqController::class,'store'])->name('faq.store');
-        Route::get('faq/edit/{id}', [FaqController::class,'edit'])->name('faq.edit');
-        Route::post('faq/update/{id}', [FaqController::class,'update'])->name('faq.update');
-        Route::delete('faq/delete/{id}', [FaqController::class,'destroy'])->name('faq.destroy');
-
+        Route::get('faq', [FaqController::class, 'index'])->name('faq.index');
+        Route::get('faq/create', [FaqController::class, 'create'])->name('faq.create');
+        Route::post('faq/store', [FaqController::class, 'store'])->name('faq.store');
+        Route::get('faq/edit/{id}', [FaqController::class, 'edit'])->name('faq.edit');
+        Route::post('faq/update/{id}', [FaqController::class, 'update'])->name('faq.update');
+        Route::delete('faq/delete/{id}', [FaqController::class, 'destroy'])->name('faq.destroy');
     });
 });
