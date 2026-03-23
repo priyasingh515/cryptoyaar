@@ -77,6 +77,7 @@ class PlanController extends Controller
             ], 400);
         }
     }
+    
 
     private function distributeCommissionTree($userId, $planPrice)
     {

@@ -218,13 +218,6 @@ class AdminConroller extends Controller
         return back()->with('success', 'User created successfully');
     }
 
-
-
-
-
-
-
-
     public function userStoreplan(Request $request)
     {
         $request->validate([
@@ -481,7 +474,6 @@ class AdminConroller extends Controller
         }
     }
 
-
     public function refund($userId)
     {
         DB::transaction(function () use ($userId) {
@@ -537,23 +529,6 @@ class AdminConroller extends Controller
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public function editUser($id)
     {
         $user = User::findOrFail($id);
@@ -592,11 +567,6 @@ class AdminConroller extends Controller
         return redirect()->back()
             ->with('success', 'User deleted successfully');
     }
-
-
-
-
-
 
     public function interested()
     {

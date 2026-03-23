@@ -128,23 +128,6 @@ class ReferralController extends Controller
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public function referralUser(Request $request)
     {
         $request->validate([
