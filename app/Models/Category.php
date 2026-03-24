@@ -13,4 +13,9 @@ class Category extends Model
 
     protected $fillable = ['name','slug','status','category_image','is_expert_category'];
 
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_favourite');
+    }
+
 }

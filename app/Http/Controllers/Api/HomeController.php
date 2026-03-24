@@ -140,4 +140,22 @@ class HomeController extends Controller
         return response()->json(['status' => true]);
     }
 
+    public function saveUserFavourite(Request $request)
+    {
+        $request->validate([
+            'category_ids' => 'required|array',
+            'category_ids.*' => 'exists:categories,id'
+        ]);
+
+        $user = auth()->user();
+
+        // old remove + new insert
+        $user->categories()->sync($request->category_ids);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Categories saved successfully'
+        ]);
+    }
+
 }

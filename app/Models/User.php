@@ -101,4 +101,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo(User::class, 'referred_by');
     }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'user_favourite')
+                ->withTimestamps();
+    }
 }
