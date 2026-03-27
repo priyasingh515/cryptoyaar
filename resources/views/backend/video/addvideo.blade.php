@@ -68,6 +68,8 @@
                                     <input type="file" name="thumbnail" class="form-control" required>
                                 </div>
 
+                                
+
                                 <div class="mb-3 col-md-6">
                                     <label>Video Type</label>
                                     <select name="is_free" id="is_free" class="form-control">
@@ -85,6 +87,11 @@
                                     </select>
                                 </div>
 
+                                <div class="mb-3 col-md-6">
+                                    <label>Publish Date</label>
+                                    <input type="datetime-local" name="publish_at" class="form-control" required>
+                                </div>
+                                 
                             </div>
                         </div>
 

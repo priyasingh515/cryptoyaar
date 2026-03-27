@@ -21,6 +21,7 @@ class VideoModel extends Model
         'keywords',
         'video_path',
         'thumbnail',
+        'publish_at',
         'is_free',
         'status',
         'views',

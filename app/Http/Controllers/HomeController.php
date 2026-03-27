@@ -15,7 +15,10 @@ class HomeController extends Controller
     public function index(){
         $videosdata = VideoModel::get();
         $categories = Category::where('status','1')->get();
-        return view('frontend.index',compact('categories','videosdata'));
+        $upcomingVideos = VideoModel::where('publish_at', '>', now())
+        ->orderBy('publish_at', 'asc') 
+        ->get();
+        return view('frontend.index',compact('categories','videosdata','upcomingVideos'));
     }
 
 

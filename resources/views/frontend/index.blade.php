@@ -159,531 +159,109 @@
 													</div>
 												</div>
                                             @endif
+
 											<div class="vc_row-full-width vc_clearfix"></div>
-											<div data-vc-full-width="true" data-vc-full-width-init="false"
-												data-vc-stretch-content="true"
-												class="vc_row wpb_row vc_row-fluid ms-light-bg-wrapper vc_row-no-padding">
-												<div class="wpb_column vc_column_container vc_col-sm-12">
-													<div class="vc_column-inner">
-														<div class="wpb_wrapper">
-															<div class="vc_empty_space" style="height: 80px"><span
-																	class="vc_empty_space_inner"></span></div>
-															<div
-																class="ms-top-movies-wrapper ms-popular-main-wrapper ms-wrapper ms-top-movie-spacer">
-																<div class="container-fluid">
-																	<div class="ms-top-movies-heading">
-																		<h2 class="heading">Upcoming Videos</h2><a
-																			href="https://demo.kamleshyadav.com/themeforest/videospire/upcoming-movies/"
-																			class="view-all">View All <i
-																				class="fa-solid fa-chevron-right"></i></a>
-																	</div>
-																	<div class="ms-latest-top-movies-slider">
-																		<div class="swiper mySwiper">
-																			<div class="swiper-wrapper ">
-																				<div class="swiper-slide">
-																					<div class="ms-exclusive-movie-box">
-																						<div
-																							class="ms-exclusive-movie-box-inner">
-																							<div
-																								class="ms-exclusive-movie-img">
-																								<a
-																									href="https://demo.kamleshyadav.com/themeforest/videospire/videospire-rtl/movie/the-friends/"><img
-																										decoding="async"
-																										src="assets/img/E-Freinds-1.jpg"
-																										alt="movie"></a>
-																							</div>
-																							<div
-																								class="ms-exclusive-movie-content">
-																								<a
-																									href="https://demo.kamleshyadav.com/themeforest/videospire/videospire-rtl/movie/the-friends/">
-																									<h4>The Friends</h4>
-																								</a>
-																								<p>2020/ Action,
-																									Adventure, Drama,
-																									Comedy.</p>
+											@if($upcomingVideos->count() > 0)
+												<div data-vc-full-width="true" data-vc-full-width-init="false"
+													data-vc-stretch-content="true"
+													class="vc_row wpb_row vc_row-fluid ms-light-bg-wrapper vc_row-no-padding">
+													<div class="wpb_column vc_column_container vc_col-sm-12">
+														<div class="vc_column-inner">
+															<div class="wpb_wrapper">
+																<div class="vc_empty_space" style="height: 80px"><span
+																		class="vc_empty_space_inner"></span></div>
+																<div
+																	class="ms-top-movies-wrapper ms-popular-main-wrapper ms-wrapper ms-top-movie-spacer">
+																	<div class="container-fluid">
+																		<div class="ms-top-movies-heading">
+																			<h2 class="heading">Upcoming Videos</h2><a
+																				href="https://demo.kamleshyadav.com/themeforest/videospire/upcoming-movies/"
+																				class="view-all">View All <i
+																					class="fa-solid fa-chevron-right"></i></a>
+																		</div>
+																		<div class="ms-latest-top-movies-slider">
+																			<div class="swiper mySwiper">
+																				<div class="swiper-wrapper ">
+																					@foreach ($upcomingVideos as $item)
+																						<div class="swiper-slide">
+																							<div class="ms-exclusive-movie-box">
 																								<div
-																									class="ms-exclusive-rating">
+																									class="ms-exclusive-movie-box-inner">
+																									<div
+																										class="ms-exclusive-movie-img">
+																										<a
+																											href=""><img
+																												decoding="async"
+																												src="{{asset('storage/'.$item->thumbnail)}}"
+																												alt="Cryptoyaar"></a>
+																									</div>
+																									<div
+																										class="ms-exclusive-movie-content">
+																										<a
+																											href="">
+																											<h4>{{$item->title}}</h4>
+																										</a>
+																										<p>Release: {{ \Carbon\Carbon::parse($item->publish_at)->format('d m Y, h:i A') }}</p>
+																										<div
+																											class="ms-exclusive-rating">
+																											<span>
+																												<svg xmlns="http://www.w3.org/2000/svg"
+																													width="12"
+																													height="12"
+																													viewBox="0 0 12 12">
+																													<path
+																														class="cls-1"
+																														d="M561.983,1176.56a0.347,0.347,0,0,0-.284-0.25l-3.72-.57-1.664-3.54a0.348,0.348,0,0,0-.63,0l-1.664,3.54-3.719.57a0.344,0.344,0,0,0-.284.25,0.365,0.365,0,0,0,.089.37l2.691,2.75-0.635,3.89a0.373,0.373,0,0,0,.14.36,0.32,0.32,0,0,0,.207.07,0.315,0.315,0,0,0,.163-0.04l3.327-1.84,3.327,1.84a0.355,0.355,0,0,0,.371-0.03,0.372,0.372,0,0,0,.139-0.36l-0.635-3.89,2.692-2.75A0.365,0.365,0,0,0,561.983,1176.56Z"
+																														transform="translate(-550 -1172)">
+																													</path>
+																												</svg>
+																												Upcoming
+																											</span>
+																										</div>
+																									</div>
+																								</div>
+																								<div class="ms-prmum-tag">
 																									<span>
 																										<svg xmlns="http://www.w3.org/2000/svg"
-																											width="12"
-																											height="12"
-																											viewBox="0 0 12 12">
-																											<path
-																												class="cls-1"
-																												d="M561.983,1176.56a0.347,0.347,0,0,0-.284-0.25l-3.72-.57-1.664-3.54a0.348,0.348,0,0,0-.63,0l-1.664,3.54-3.719.57a0.344,0.344,0,0,0-.284.25,0.365,0.365,0,0,0,.089.37l2.691,2.75-0.635,3.89a0.373,0.373,0,0,0,.14.36,0.32,0.32,0,0,0,.207.07,0.315,0.315,0,0,0,.163-0.04l3.327-1.84,3.327,1.84a0.355,0.355,0,0,0,.371-0.03,0.372,0.372,0,0,0,.139-0.36l-0.635-3.89,2.692-2.75A0.365,0.365,0,0,0,561.983,1176.56Z"
-																												transform="translate(-550 -1172)">
-																											</path>
+																											viewBox="0 0 32 32">
+																											<g>
+																												<path
+																													d="M27.488 23l-.513 2.225A1 1 0 0126 26H6a1 1 0 01-.975-.775L4.512 23zM29.975 12.225L27.95 21H4.05l-2.025-8.775a1.001 1.001 0 011.471-1.093l6.189 3.537 5.482-8.223c.179-.268.475-.434.796-.446a.99.99 0 01.826.386l6.429 8.266 5.227-3.484a1.002 1.002 0 011.53 1.057z">
+																												</path>
+																											</g>
 																										</svg>
-																										0
 																									</span>
+																									<p>Premium</p>
 																								</div>
 																							</div>
 																						</div>
-																						<div class="ms-prmum-tag">
-																							<span>
-																								<svg xmlns="http://www.w3.org/2000/svg"
-																									viewBox="0 0 32 32">
-																									<g>
-																										<path
-																											d="M27.488 23l-.513 2.225A1 1 0 0126 26H6a1 1 0 01-.975-.775L4.512 23zM29.975 12.225L27.95 21H4.05l-2.025-8.775a1.001 1.001 0 011.471-1.093l6.189 3.537 5.482-8.223c.179-.268.475-.434.796-.446a.99.99 0 01.826.386l6.429 8.266 5.227-3.484a1.002 1.002 0 011.53 1.057z">
-																										</path>
-																									</g>
-																								</svg>
-																							</span>
-																							<p>Premium</p>
-																						</div>
+																					@endforeach
+																				</div>
+																				<div class="ms-letest-top-navigation">
+																					<div class="swiper-button-next">
+																						<span>
+																							<svg xmlns="http://www.w3.org/2000/svg"
+																								width="7" height="12"
+																								viewBox="0 0 7 12">
+																								<path class="cls-1"
+																									d="M1909.81,2028.53l-5.3-5.34a0.66,0.66,0,0,0-.46-0.19,0.642,0.642,0,0,0-.46.19l-0.39.39a0.652,0.652,0,0,0,0,.93l4.45,4.49-4.46,4.49a0.652,0.652,0,0,0,0,.92l0.39,0.4a0.66,0.66,0,0,0,.46.19,0.642,0.642,0,0,0,.46-0.19l5.31-5.35a0.66,0.66,0,0,0,.19-0.46A0.683,0.683,0,0,0,1909.81,2028.53Z"
+																									transform="translate(-1903 -2023)">
+																								</path>
+																							</svg>
+																						</span>
 																					</div>
-																				</div>
-																				<div class="swiper-slide">
-																					<div class="ms-exclusive-movie-box">
-																						<div
-																							class="ms-exclusive-movie-box-inner">
-																							<div
-																								class="ms-exclusive-movie-img">
-																								<a
-																									href="https://demo.kamleshyadav.com/themeforest/videospire/videospire-rtl/movie/skateboard/"><img
-																										decoding="async"
-																										src="assets/img/5-2-1.jpg"
-																										alt="movie"></a>
-																							</div>
-																							<div
-																								class="ms-exclusive-movie-content">
-																								<a
-																									href="https://demo.kamleshyadav.com/themeforest/videospire/videospire-rtl/movie/skateboard/">
-																									<h4>Skateboard</h4>
-																								</a>
-																								<p>2020/ Action,
-																									Adventure, Drama,
-																									Comedy.</p>
-																								<div
-																									class="ms-exclusive-rating">
-																									<span>
-																										<svg xmlns="http://www.w3.org/2000/svg"
-																											width="12"
-																											height="12"
-																											viewBox="0 0 12 12">
-																											<path
-																												class="cls-1"
-																												d="M561.983,1176.56a0.347,0.347,0,0,0-.284-0.25l-3.72-.57-1.664-3.54a0.348,0.348,0,0,0-.63,0l-1.664,3.54-3.719.57a0.344,0.344,0,0,0-.284.25,0.365,0.365,0,0,0,.089.37l2.691,2.75-0.635,3.89a0.373,0.373,0,0,0,.14.36,0.32,0.32,0,0,0,.207.07,0.315,0.315,0,0,0,.163-0.04l3.327-1.84,3.327,1.84a0.355,0.355,0,0,0,.371-0.03,0.372,0.372,0,0,0,.139-0.36l-0.635-3.89,2.692-2.75A0.365,0.365,0,0,0,561.983,1176.56Z"
-																												transform="translate(-550 -1172)">
-																											</path>
-																										</svg>
-																										0
-																									</span>
-																								</div>
-																							</div>
-																						</div>
-																						<div class="ms-prmum-tag">
-																							<span>
-																								<svg xmlns="http://www.w3.org/2000/svg"
-																									viewBox="0 0 32 32">
-																									<g>
-																										<path
-																											d="M27.488 23l-.513 2.225A1 1 0 0126 26H6a1 1 0 01-.975-.775L4.512 23zM29.975 12.225L27.95 21H4.05l-2.025-8.775a1.001 1.001 0 011.471-1.093l6.189 3.537 5.482-8.223c.179-.268.475-.434.796-.446a.99.99 0 01.826.386l6.429 8.266 5.227-3.484a1.002 1.002 0 011.53 1.057z">
-																										</path>
-																									</g>
-																								</svg>
-																							</span>
-																							<p>Premium</p>
-																						</div>
+																					<div class="swiper-button-prev">
+																						<span>
+																							<svg xmlns="http://www.w3.org/2000/svg"
+																								width="7" height="12"
+																								viewBox="0 0 7 12">
+																								<path class="cls-1"
+																									d="M1909.81,2028.53l-5.3-5.34a0.66,0.66,0,0,0-.46-0.19,0.642,0.642,0,0,0-.46.19l-0.39.39a0.652,0.652,0,0,0,0,.93l4.45,4.49-4.46,4.49a0.652,0.652,0,0,0,0,.92l0.39,0.4a0.66,0.66,0,0,0,.46.19,0.642,0.642,0,0,0,.46-0.19l5.31-5.35a0.66,0.66,0,0,0,.19-0.46A0.683,0.683,0,0,0,1909.81,2028.53Z"
+																									transform="translate(-1903 -2023)">
+																								</path>
+																							</svg>
+																						</span>
 																					</div>
-																				</div>
-																				<div class="swiper-slide">
-																					<div class="ms-exclusive-movie-box">
-																						<div
-																							class="ms-exclusive-movie-box-inner">
-																							<div
-																								class="ms-exclusive-movie-img">
-																								<a
-																									href="https://demo.kamleshyadav.com/themeforest/videospire/videospire-rtl/movie/doctor-stream/"><img
-																										decoding="async"
-																										src="assets/img/4-2-1.jpg"
-																										alt="movie"></a>
-																							</div>
-																							<div
-																								class="ms-exclusive-movie-content">
-																								<a
-																									href="https://demo.kamleshyadav.com/themeforest/videospire/videospire-rtl/movie/doctor-stream/">
-																									<h4>Doctor Stream
-																									</h4>
-																								</a>
-																								<p>2020/ Action,
-																									Adventure, Drama,
-																									Comedy.</p>
-																								<div
-																									class="ms-exclusive-rating">
-																									<span>
-																										<svg xmlns="http://www.w3.org/2000/svg"
-																											width="12"
-																											height="12"
-																											viewBox="0 0 12 12">
-																											<path
-																												class="cls-1"
-																												d="M561.983,1176.56a0.347,0.347,0,0,0-.284-0.25l-3.72-.57-1.664-3.54a0.348,0.348,0,0,0-.63,0l-1.664,3.54-3.719.57a0.344,0.344,0,0,0-.284.25,0.365,0.365,0,0,0,.089.37l2.691,2.75-0.635,3.89a0.373,0.373,0,0,0,.14.36,0.32,0.32,0,0,0,.207.07,0.315,0.315,0,0,0,.163-0.04l3.327-1.84,3.327,1.84a0.355,0.355,0,0,0,.371-0.03,0.372,0.372,0,0,0,.139-0.36l-0.635-3.89,2.692-2.75A0.365,0.365,0,0,0,561.983,1176.56Z"
-																												transform="translate(-550 -1172)">
-																											</path>
-																										</svg>
-																										4
-																									</span>
-																								</div>
-																							</div>
-																						</div>
-																						<div class="ms-prmum-tag">
-																							<span>
-																								<svg xmlns="http://www.w3.org/2000/svg"
-																									viewBox="0 0 32 32">
-																									<g>
-																										<path
-																											d="M27.488 23l-.513 2.225A1 1 0 0126 26H6a1 1 0 01-.975-.775L4.512 23zM29.975 12.225L27.95 21H4.05l-2.025-8.775a1.001 1.001 0 011.471-1.093l6.189 3.537 5.482-8.223c.179-.268.475-.434.796-.446a.99.99 0 01.826.386l6.429 8.266 5.227-3.484a1.002 1.002 0 011.53 1.057z">
-																										</path>
-																									</g>
-																								</svg>
-																							</span>
-																							<p>Premium</p>
-																						</div>
-																					</div>
-																				</div>
-																				<div class="swiper-slide">
-																					<div class="ms-exclusive-movie-box">
-																						<div
-																							class="ms-exclusive-movie-box-inner">
-																							<div
-																								class="ms-exclusive-movie-img">
-																								<a
-																									href="https://demo.kamleshyadav.com/themeforest/videospire/videospire-rtl/movie/prince/"><img
-																										decoding="async"
-																										src="assets/img/3-2-1.jpg"
-																										alt="movie"></a>
-																							</div>
-																							<div
-																								class="ms-exclusive-movie-content">
-																								<a
-																									href="https://demo.kamleshyadav.com/themeforest/videospire/videospire-rtl/movie/prince/">
-																									<h4>Prince</h4>
-																								</a>
-																								<p>2020/ Action,
-																									Adventure, Drama,
-																									Comedy.</p>
-																								<div
-																									class="ms-exclusive-rating">
-																									<span>
-																										<svg xmlns="http://www.w3.org/2000/svg"
-																											width="12"
-																											height="12"
-																											viewBox="0 0 12 12">
-																											<path
-																												class="cls-1"
-																												d="M561.983,1176.56a0.347,0.347,0,0,0-.284-0.25l-3.72-.57-1.664-3.54a0.348,0.348,0,0,0-.63,0l-1.664,3.54-3.719.57a0.344,0.344,0,0,0-.284.25,0.365,0.365,0,0,0,.089.37l2.691,2.75-0.635,3.89a0.373,0.373,0,0,0,.14.36,0.32,0.32,0,0,0,.207.07,0.315,0.315,0,0,0,.163-0.04l3.327-1.84,3.327,1.84a0.355,0.355,0,0,0,.371-0.03,0.372,0.372,0,0,0,.139-0.36l-0.635-3.89,2.692-2.75A0.365,0.365,0,0,0,561.983,1176.56Z"
-																												transform="translate(-550 -1172)">
-																											</path>
-																										</svg>
-																										0
-																									</span>
-																								</div>
-																							</div>
-																						</div>
-																					</div>
-																				</div>
-																				<div class="swiper-slide">
-																					<div class="ms-exclusive-movie-box">
-																						<div
-																							class="ms-exclusive-movie-box-inner">
-																							<div
-																								class="ms-exclusive-movie-img">
-																								<a
-																									href="https://demo.kamleshyadav.com/themeforest/videospire/videospire-rtl/movie/caral/"><img
-																										decoding="async"
-																										src="assets/img/2-2-1.jpg"
-																										alt="movie"></a>
-																							</div>
-																							<div
-																								class="ms-exclusive-movie-content">
-																								<a
-																									href="https://demo.kamleshyadav.com/themeforest/videospire/videospire-rtl/movie/caral/">
-																									<h4>Caral</h4>
-																								</a>
-																								<p>2020/ Action,
-																									Adventure, Drama,
-																									Comedy.</p>
-																								<div
-																									class="ms-exclusive-rating">
-																									<span>
-																										<svg xmlns="http://www.w3.org/2000/svg"
-																											width="12"
-																											height="12"
-																											viewBox="0 0 12 12">
-																											<path
-																												class="cls-1"
-																												d="M561.983,1176.56a0.347,0.347,0,0,0-.284-0.25l-3.72-.57-1.664-3.54a0.348,0.348,0,0,0-.63,0l-1.664,3.54-3.719.57a0.344,0.344,0,0,0-.284.25,0.365,0.365,0,0,0,.089.37l2.691,2.75-0.635,3.89a0.373,0.373,0,0,0,.14.36,0.32,0.32,0,0,0,.207.07,0.315,0.315,0,0,0,.163-0.04l3.327-1.84,3.327,1.84a0.355,0.355,0,0,0,.371-0.03,0.372,0.372,0,0,0,.139-0.36l-0.635-3.89,2.692-2.75A0.365,0.365,0,0,0,561.983,1176.56Z"
-																												transform="translate(-550 -1172)">
-																											</path>
-																										</svg>
-																										0
-																									</span>
-																								</div>
-																							</div>
-																						</div>
-																						<div class="ms-prmum-tag">
-																							<span>
-																								<svg xmlns="http://www.w3.org/2000/svg"
-																									viewBox="0 0 32 32">
-																									<g>
-																										<path
-																											d="M27.488 23l-.513 2.225A1 1 0 0126 26H6a1 1 0 01-.975-.775L4.512 23zM29.975 12.225L27.95 21H4.05l-2.025-8.775a1.001 1.001 0 011.471-1.093l6.189 3.537 5.482-8.223c.179-.268.475-.434.796-.446a.99.99 0 01.826.386l6.429 8.266 5.227-3.484a1.002 1.002 0 011.53 1.057z">
-																										</path>
-																									</g>
-																								</svg>
-																							</span>
-																							<p>Premium</p>
-																						</div>
-																					</div>
-																				</div>
-																				<div class="swiper-slide">
-																					<div class="ms-exclusive-movie-box">
-																						<div
-																							class="ms-exclusive-movie-box-inner">
-																							<div
-																								class="ms-exclusive-movie-img">
-																								<a
-																									href="https://demo.kamleshyadav.com/themeforest/videospire/videospire-rtl/movie/city-of-taxi/"><img
-																										decoding="async"
-																										src="assets/img/1-1-1.jpg"
-																										alt="movie"></a>
-																							</div>
-																							<div
-																								class="ms-exclusive-movie-content">
-																								<a
-																									href="https://demo.kamleshyadav.com/themeforest/videospire/videospire-rtl/movie/city-of-taxi/">
-																									<h4>City Of Taxi
-																									</h4>
-																								</a>
-																								<p>2020/ Action,
-																									Adventure, Drama,
-																									Comedy.</p>
-																								<div
-																									class="ms-exclusive-rating">
-																									<span>
-																										<svg xmlns="http://www.w3.org/2000/svg"
-																											width="12"
-																											height="12"
-																											viewBox="0 0 12 12">
-																											<path
-																												class="cls-1"
-																												d="M561.983,1176.56a0.347,0.347,0,0,0-.284-0.25l-3.72-.57-1.664-3.54a0.348,0.348,0,0,0-.63,0l-1.664,3.54-3.719.57a0.344,0.344,0,0,0-.284.25,0.365,0.365,0,0,0,.089.37l2.691,2.75-0.635,3.89a0.373,0.373,0,0,0,.14.36,0.32,0.32,0,0,0,.207.07,0.315,0.315,0,0,0,.163-0.04l3.327-1.84,3.327,1.84a0.355,0.355,0,0,0,.371-0.03,0.372,0.372,0,0,0,.139-0.36l-0.635-3.89,2.692-2.75A0.365,0.365,0,0,0,561.983,1176.56Z"
-																												transform="translate(-550 -1172)">
-																											</path>
-																										</svg>
-																										4
-																									</span>
-																								</div>
-																							</div>
-																						</div>
-																					</div>
-																				</div>
-																				<div class="swiper-slide">
-																					<div class="ms-exclusive-movie-box">
-																						<div
-																							class="ms-exclusive-movie-box-inner">
-																							<div
-																								class="ms-exclusive-movie-img">
-																								<a
-																									href="https://demo.kamleshyadav.com/themeforest/videospire/videospire-rtl/movie/god-2/"><img
-																										decoding="async"
-																										src="assets/img/3-3.jpg"
-																										alt="movie"></a>
-																							</div>
-																							<div
-																								class="ms-exclusive-movie-content">
-																								<a
-																									href="https://demo.kamleshyadav.com/themeforest/videospire/videospire-rtl/movie/god-2/">
-																									<h4>God</h4>
-																								</a>
-																								<p>2020/ Action,
-																									Adventure, Drama,
-																									Comedy.</p>
-																								<div
-																									class="ms-exclusive-rating">
-																									<span>
-																										<svg xmlns="http://www.w3.org/2000/svg"
-																											width="12"
-																											height="12"
-																											viewBox="0 0 12 12">
-																											<path
-																												class="cls-1"
-																												d="M561.983,1176.56a0.347,0.347,0,0,0-.284-0.25l-3.72-.57-1.664-3.54a0.348,0.348,0,0,0-.63,0l-1.664,3.54-3.719.57a0.344,0.344,0,0,0-.284.25,0.365,0.365,0,0,0,.089.37l2.691,2.75-0.635,3.89a0.373,0.373,0,0,0,.14.36,0.32,0.32,0,0,0,.207.07,0.315,0.315,0,0,0,.163-0.04l3.327-1.84,3.327,1.84a0.355,0.355,0,0,0,.371-0.03,0.372,0.372,0,0,0,.139-0.36l-0.635-3.89,2.692-2.75A0.365,0.365,0,0,0,561.983,1176.56Z"
-																												transform="translate(-550 -1172)">
-																											</path>
-																										</svg>
-																										0
-																									</span>
-																								</div>
-																							</div>
-																						</div>
-																						<div class="ms-prmum-tag">
-																							<span>
-																								<svg xmlns="http://www.w3.org/2000/svg"
-																									viewBox="0 0 32 32">
-																									<g>
-																										<path
-																											d="M27.488 23l-.513 2.225A1 1 0 0126 26H6a1 1 0 01-.975-.775L4.512 23zM29.975 12.225L27.95 21H4.05l-2.025-8.775a1.001 1.001 0 011.471-1.093l6.189 3.537 5.482-8.223c.179-.268.475-.434.796-.446a.99.99 0 01.826.386l6.429 8.266 5.227-3.484a1.002 1.002 0 011.53 1.057z">
-																										</path>
-																									</g>
-																								</svg>
-																							</span>
-																							<p>Premium</p>
-																						</div>
-																					</div>
-																				</div>
-																				<div class="swiper-slide">
-																					<div class="ms-exclusive-movie-box">
-																						<div
-																							class="ms-exclusive-movie-box-inner">
-																							<div
-																								class="ms-exclusive-movie-img">
-																								<a
-																									href="https://demo.kamleshyadav.com/themeforest/videospire/videospire-rtl/movie/epidemic/"><img
-																										decoding="async"
-																										src="assets/img/4-3.jpg"
-																										alt="movie"></a>
-																							</div>
-																							<div
-																								class="ms-exclusive-movie-content">
-																								<a
-																									href="https://demo.kamleshyadav.com/themeforest/videospire/videospire-rtl/movie/epidemic/">
-																									<h4>Epidemic</h4>
-																								</a>
-																								<p>2020/ Action,
-																									Adventure, Drama,
-																									Comedy.</p>
-																								<div
-																									class="ms-exclusive-rating">
-																									<span>
-																										<svg xmlns="http://www.w3.org/2000/svg"
-																											width="12"
-																											height="12"
-																											viewBox="0 0 12 12">
-																											<path
-																												class="cls-1"
-																												d="M561.983,1176.56a0.347,0.347,0,0,0-.284-0.25l-3.72-.57-1.664-3.54a0.348,0.348,0,0,0-.63,0l-1.664,3.54-3.719.57a0.344,0.344,0,0,0-.284.25,0.365,0.365,0,0,0,.089.37l2.691,2.75-0.635,3.89a0.373,0.373,0,0,0,.14.36,0.32,0.32,0,0,0,.207.07,0.315,0.315,0,0,0,.163-0.04l3.327-1.84,3.327,1.84a0.355,0.355,0,0,0,.371-0.03,0.372,0.372,0,0,0,.139-0.36l-0.635-3.89,2.692-2.75A0.365,0.365,0,0,0,561.983,1176.56Z"
-																												transform="translate(-550 -1172)">
-																											</path>
-																										</svg>
-																										0
-																									</span>
-																								</div>
-																							</div>
-																						</div>
-																					</div>
-																				</div>
-																				<div class="swiper-slide">
-																					<div class="ms-exclusive-movie-box">
-																						<div
-																							class="ms-exclusive-movie-box-inner">
-																							<div
-																								class="ms-exclusive-movie-img">
-																								<a
-																									href="https://demo.kamleshyadav.com/themeforest/videospire/videospire-rtl/movie/february-week/"><img
-																										decoding="async"
-																										src="assets/img/1-3.jpg"
-																										alt="movie"></a>
-																							</div>
-																							<div
-																								class="ms-exclusive-movie-content">
-																								<a
-																									href="https://demo.kamleshyadav.com/themeforest/videospire/videospire-rtl/movie/february-week/">
-																									<h4>February Week
-																									</h4>
-																								</a>
-																								<p>2020/ Action,
-																									Adventure, Drama,
-																									Comedy.</p>
-																								<div
-																									class="ms-exclusive-rating">
-																									<span>
-																										<svg xmlns="http://www.w3.org/2000/svg"
-																											width="12"
-																											height="12"
-																											viewBox="0 0 12 12">
-																											<path
-																												class="cls-1"
-																												d="M561.983,1176.56a0.347,0.347,0,0,0-.284-0.25l-3.72-.57-1.664-3.54a0.348,0.348,0,0,0-.63,0l-1.664,3.54-3.719.57a0.344,0.344,0,0,0-.284.25,0.365,0.365,0,0,0,.089.37l2.691,2.75-0.635,3.89a0.373,0.373,0,0,0,.14.36,0.32,0.32,0,0,0,.207.07,0.315,0.315,0,0,0,.163-0.04l3.327-1.84,3.327,1.84a0.355,0.355,0,0,0,.371-0.03,0.372,0.372,0,0,0,.139-0.36l-0.635-3.89,2.692-2.75A0.365,0.365,0,0,0,561.983,1176.56Z"
-																												transform="translate(-550 -1172)">
-																											</path>
-																										</svg>
-																										0
-																									</span>
-																								</div>
-																							</div>
-																						</div>
-																					</div>
-																				</div>
-																				<div class="swiper-slide">
-																					<div class="ms-exclusive-movie-box">
-																						<div
-																							class="ms-exclusive-movie-box-inner">
-																							<div
-																								class="ms-exclusive-movie-img">
-																								<a
-																									href="https://demo.kamleshyadav.com/themeforest/videospire/videospire-rtl/movie/season-first/"><img
-																										decoding="async"
-																										src="assets/img/2-4.jpg"
-																										alt="movie"></a>
-																							</div>
-																							<div
-																								class="ms-exclusive-movie-content">
-																								<a
-																									href="https://demo.kamleshyadav.com/themeforest/videospire/videospire-rtl/movie/season-first/">
-																									<h4>Season First
-																									</h4>
-																								</a>
-																								<p>2020/ Action,
-																									Adventure, Drama,
-																									Comedy.</p>
-																								<div
-																									class="ms-exclusive-rating">
-																									<span>
-																										<svg xmlns="http://www.w3.org/2000/svg"
-																											width="12"
-																											height="12"
-																											viewBox="0 0 12 12">
-																											<path
-																												class="cls-1"
-																												d="M561.983,1176.56a0.347,0.347,0,0,0-.284-0.25l-3.72-.57-1.664-3.54a0.348,0.348,0,0,0-.63,0l-1.664,3.54-3.719.57a0.344,0.344,0,0,0-.284.25,0.365,0.365,0,0,0,.089.37l2.691,2.75-0.635,3.89a0.373,0.373,0,0,0,.14.36,0.32,0.32,0,0,0,.207.07,0.315,0.315,0,0,0,.163-0.04l3.327-1.84,3.327,1.84a0.355,0.355,0,0,0,.371-0.03,0.372,0.372,0,0,0,.139-0.36l-0.635-3.89,2.692-2.75A0.365,0.365,0,0,0,561.983,1176.56Z"
-																												transform="translate(-550 -1172)">
-																											</path>
-																										</svg>
-																										0
-																									</span>
-																								</div>
-																							</div>
-																						</div>
-																					</div>
-																				</div>
-																			</div>
-																			<div class="ms-letest-top-navigation">
-																				<div class="swiper-button-next">
-																					<span>
-																						<svg xmlns="http://www.w3.org/2000/svg"
-																							width="7" height="12"
-																							viewBox="0 0 7 12">
-																							<path class="cls-1"
-																								d="M1909.81,2028.53l-5.3-5.34a0.66,0.66,0,0,0-.46-0.19,0.642,0.642,0,0,0-.46.19l-0.39.39a0.652,0.652,0,0,0,0,.93l4.45,4.49-4.46,4.49a0.652,0.652,0,0,0,0,.92l0.39,0.4a0.66,0.66,0,0,0,.46.19,0.642,0.642,0,0,0,.46-0.19l5.31-5.35a0.66,0.66,0,0,0,.19-0.46A0.683,0.683,0,0,0,1909.81,2028.53Z"
-																								transform="translate(-1903 -2023)">
-																							</path>
-																						</svg>
-																					</span>
-																				</div>
-																				<div class="swiper-button-prev">
-																					<span>
-																						<svg xmlns="http://www.w3.org/2000/svg"
-																							width="7" height="12"
-																							viewBox="0 0 7 12">
-																							<path class="cls-1"
-																								d="M1909.81,2028.53l-5.3-5.34a0.66,0.66,0,0,0-.46-0.19,0.642,0.642,0,0,0-.46.19l-0.39.39a0.652,0.652,0,0,0,0,.93l4.45,4.49-4.46,4.49a0.652,0.652,0,0,0,0,.92l0.39,0.4a0.66,0.66,0,0,0,.46.19,0.642,0.642,0,0,0,.46-0.19l5.31-5.35a0.66,0.66,0,0,0,.19-0.46A0.683,0.683,0,0,0,1909.81,2028.53Z"
-																								transform="translate(-1903 -2023)">
-																							</path>
-																						</svg>
-																					</span>
 																				</div>
 																			</div>
 																		</div>
@@ -693,7 +271,7 @@
 														</div>
 													</div>
 												</div>
-											</div>
+											@endif
 											<div class="vc_row-full-width vc_clearfix"></div>
 											<div data-vc-full-width="true" data-vc-full-width-init="false"
 												data-vc-stretch-content="true"

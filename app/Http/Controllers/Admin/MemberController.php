@@ -63,7 +63,6 @@ class MemberController extends Controller
             'role_id' => $request->role_id,
         ];
 
-        // password sirf tab update ho jab bhara ho
         if ($request->filled('password')) {
             $data['password'] = Hash::make($request->password);
         }
