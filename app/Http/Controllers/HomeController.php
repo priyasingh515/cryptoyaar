@@ -13,7 +13,9 @@ class HomeController extends Controller
 {
     //
     public function index(){
-        $videosdata = VideoModel::get();
+        $videosdata = VideoModel::where('publish_at', '<=', now())
+            ->orderBy('publish_at', 'desc')
+            ->get();
         $categories = Category::where('status','1')->get();
         $upcomingVideos = VideoModel::where('publish_at', '>', now())
         ->orderBy('publish_at', 'asc') 
