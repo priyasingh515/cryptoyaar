@@ -157,4 +157,25 @@ class HomeController extends Controller
         ]);
     }
 
+
+    public function getCategories(Request $request)
+    {
+        $user = auth()->user();
+
+        $favouriteIds = DB::table('user_favourite')
+            ->where('user_id', $user->id)
+            ->pluck('category_id')
+            ->toArray();
+
+        $categories = DB::table('categories')
+            ->select('*')
+            ->orderByRaw("FIELD(id, " . implode(',', $favouriteIds ?: [0]) . ") DESC")
+            ->get();
+
+        return response()->json([
+            'status' => true,
+            'data' => $categories
+        ]);
+    }
+
 }
