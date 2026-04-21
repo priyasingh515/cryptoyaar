@@ -52,8 +52,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/expert-categories', [HomeController::class, 'expertCategories']);
     Route::post('/event/interested', [AuthController::class, 'eventInterested']);
 
-
-
+    
     Route::get('/my-network', [ReferralController::class, 'myNetwork']);
     Route::post('/plan/purchase', [PlanController::class, 'purchase']);
     Route::post('/user/referral', [ReferralController::class, 'referralUser']);

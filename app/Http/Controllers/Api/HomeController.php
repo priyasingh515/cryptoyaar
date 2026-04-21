@@ -149,7 +149,6 @@ class HomeController extends Controller
 
         $user = auth()->user();
 
-        // old remove + new insert
         $user->categories()->sync($request->category_ids);
 
         return response()->json([
