@@ -54,10 +54,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //   plans plan purchase  faq
     Route::get('/plan-list', [HomeController::class, 'planfetch']);
-    Route::post('/create-order', [PaymentController::class, 'createOrder']);
-    Route::post('/verify-payment', [PaymentController::class, 'verifyPayment']);
+    // Route::post('/create-order', [PaymentController::class, 'createOrder']);
+    // Route::post('/verify-payment', [PaymentController::class, 'verifyPayment']);
+    Route::post('/plan/purchase', [PlanController::class, 'purchase']);
     Route::get('/payment_history', [BankDetailController::class, 'purchaseHistory']);
-
     Route::get('/faqs', [HomeController::class, 'faqList']);
 
     // video 
@@ -71,7 +71,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Refer & Earn
     Route::post('/user/referral', [ReferralController::class, 'referralUser']);
-    Route::post('/plan/purchase', [PlanController::class, 'purchase']);
+   
     Route::post('/refund', [RefundController::class, 'refund']);
     Route::get('/my-network', [ReferralController::class, 'myNetwork']);
 });

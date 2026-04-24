@@ -160,7 +160,7 @@
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': 'Bearer 2|Cp88OsYHq2zUsIncTSK21szxGfJQVnyOV2sGb33Q1fb730ec'
+                        'Authorization': 'Bearer 2|6Hmx71AEW0IexRoCmoWgzfZpgA8fXeJsEoVicDEodbc0d04f'
                     },
                     body: JSON.stringify({
                         plan_id: planId
@@ -186,7 +186,7 @@
                                     method: 'POST',
                                     headers: {
                                         'Content-Type': 'application/json',
-                                        'Authorization': 'Bearer 2|Cp88OsYHq2zUsIncTSK21szxGfJQVnyOV2sGb33Q1fb730ec'
+                                        'Authorization': 'Bearer 2|6Hmx71AEW0IexRoCmoWgzfZpgA8fXeJsEoVicDEodbc0d04f'
                                     },
                                     body: JSON.stringify({
                                         razorpay_order_id: response.razorpay_order_id,
