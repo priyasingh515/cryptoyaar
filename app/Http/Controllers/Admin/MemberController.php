@@ -75,7 +75,7 @@ class MemberController extends Controller
 
     public function destroy(Admin $member)
     {
-        // Super Admin ko delete na hone do (optional safety)
+       
         if ($member->role->slug === 'super-admin') {
             return back()->with('error', 'Super Admin cannot be deleted');
         }

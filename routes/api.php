@@ -32,8 +32,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/profile', [ProfileController::class, 'show']);
     Route::post('/profile/update', [ProfileController::class, 'update']);
     Route::post('/whatsapp-updates', [ProfileController::class, 'whatsappUpdates']);
-    Route::post('/user-favourite', [HomeController::class, 'saveUserFavourite']);
     Route::get('/categoryList', [HomeController::class, 'getCategories']);
+    Route::get('/expert-categories', [HomeController::class, 'expertCategories']);
+    Route::post('/user-favourite', [HomeController::class, 'saveUserFavourite']);
+    Route::post('/skip-category', [HomeController::class, 'skipCategory']);
     
 
     Route::get('/bank-details', [BankDetailController::class, 'show']);
@@ -45,19 +47,20 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('/create-order', [PaymentController::class, 'createOrder']);
     Route::post('/verify-payment', [PaymentController::class, 'verifyPayment']);
-    
 
     Route::get('/plan-list', [HomeController::class, 'planfetch']);
-
     Route::get('/faqs', [HomeController::class, 'faqList']);
-    Route::get('/expert-categories', [HomeController::class, 'expertCategories']);
-    Route::post('/event/interested', [AuthController::class, 'eventInterested']);
 
+    //Meetup 
+    Route::get('/events', [HomeController::class, 'event']);
+    Route::post('/event/interested', [AuthController::class, 'eventInterested']);
     
-    Route::get('/my-network', [ReferralController::class, 'myNetwork']);
-    Route::post('/plan/purchase', [PlanController::class, 'purchase']);
+
+    // Refer & Earn
     Route::post('/user/referral', [ReferralController::class, 'referralUser']);
+    Route::post('/plan/purchase', [PlanController::class, 'purchase']);
     Route::post('/refund', [RefundController::class, 'refund']);
+    Route::get('/my-network', [ReferralController::class, 'myNetwork']);
 });
 
 Route::post('/send-otp',[AuthController::class,'sendOtp']);

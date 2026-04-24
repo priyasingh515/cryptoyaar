@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
  use App\Models\Faq;
  use App\Models\Category;
  use App\Models\PlanModel;
+ use App\Models\Event;
  use App\Models\VideoView;
  use App\Models\EventInterest;
 use Illuminate\Http\Request;
@@ -36,6 +37,16 @@ class HomeController extends Controller
             'status' => true,
             'message' => 'FAQ List',
             'data' => $faqs
+        ]);
+    }
+    public function event()
+    {
+        $events = Event::all();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Events list',
+            'data' => $events
         ]);
     }
 
@@ -77,32 +88,11 @@ class HomeController extends Controller
         ]);
     }
 
-    // public function storeWatchTime(Request $request)
-    // {
-    //     if ($request->watch_time < 30) {
-    //         return response()->json(['status' => false]);
-    //     }
-
-    //     DB::table('video_views')->updateOrInsert(
-    //         [
-    //             'session_id' => $request->session_id
-    //         ],
-    //         [
-    //             'user_id' => 3, // testing
-    //             'video_id' => $request->video_id,
-    //             'watch_time' => $request->watch_time,
-    //             'is_valid' => 1,
-    //             'updated_at' => now(),
-    //             'created_at' => now()
-    //         ]
-    //     );
-
-    //     return response()->json(['status' => true]);
-    // }
+    
 
     public function storeWatchTime(Request $request)
     {
-        $userId = 3; // testing (baad me auth()->id())
+        $userId = 3; 
 
         if ($request->watch_time < 30) {
             return response()->json(['status' => false]);
@@ -115,7 +105,6 @@ class HomeController extends Controller
 
         if ($existing) {
 
-            // 🔥 sirf tab update jab new time bada ho
             if ($request->watch_time > $existing->watch_time) {
 
                 DB::table('video_views')
@@ -140,6 +129,7 @@ class HomeController extends Controller
         return response()->json(['status' => true]);
     }
 
+
     public function saveUserFavourite(Request $request)
     {
         $request->validate([
@@ -151,9 +141,25 @@ class HomeController extends Controller
 
         $user->categories()->sync($request->category_ids);
 
+        $user->is_profile_completed = true;
+        $user->save();
+
         return response()->json([
             'status' => true,
             'message' => 'Categories saved successfully'
+        ]);
+    }
+
+    public function skipCategory()
+    {
+        $user = auth()->user();
+
+        $user->is_profile_completed = false; 
+        $user->save();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Skipped'
         ]);
     }
 
@@ -167,8 +173,7 @@ class HomeController extends Controller
             ->pluck('category_id')
             ->toArray();
 
-        $categories = DB::table('categories')
-            ->select('*')
+        $categories = Category::select('*')
             ->orderByRaw("FIELD(id, " . implode(',', $favouriteIds ?: [0]) . ") DESC")
             ->get();
 
@@ -177,5 +182,24 @@ class HomeController extends Controller
             'data' => $categories
         ]);
     }
+
+    public function search(Request $request)
+    {
+        $search = trim($request->search);
+
+        $videos = VideoView::where(function ($query) use ($search) {
+                $query->where('title', 'LIKE', "%$search%")
+                    ->orWhere('keywords', 'LIKE', "%$search%")
+                    ->orWhere('description', 'LIKE', "%$search%");
+            })
+            ->get();
+
+        return response()->json([
+            'status' => true,
+            'data' => $videos
+        ]);
+    }
+
+
 
 }

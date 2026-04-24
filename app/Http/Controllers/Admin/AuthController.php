@@ -32,7 +32,7 @@ class AuthController extends Controller
             'is_active' => 1
         ])) {
 
-            Session::forget('captcha'); // clear after success
+            Session::forget('captcha'); 
 
             return redirect()->route('admin.dashboard');
         }

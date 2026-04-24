@@ -38,7 +38,7 @@ class PlanController extends Controller
 
         
         return redirect()
-            ->route('plan.create')
+            ->route('plan.index')
             ->with('success', 'Plan created successfully');
     }
 
@@ -73,7 +73,6 @@ class PlanController extends Controller
         'price'     => $request->price,
         'benefits'  => $benefits,
 
-        // ✅ STATUS HANDLING
         'status' => $request->has('status') ? 'active' : 'inactive',
     ]);
 

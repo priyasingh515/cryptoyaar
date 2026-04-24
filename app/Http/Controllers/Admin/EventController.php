@@ -40,7 +40,6 @@ class EventController extends Controller
             $image = $request->file('image');
             $imageName = time().'.'.$image->getClientOriginalExtension();
 
-            // public/events folder me move
             $image->move(public_path('events'), $imageName);
         }
 
@@ -52,7 +51,7 @@ class EventController extends Controller
             'image' => $imageName
         ]);
 
-        return back()->with('success', 'Event Added');
+        return redirect()->route('event.index')->with('success', 'Event Added');
     }
 
     public function edit($id){

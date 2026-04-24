@@ -16,7 +16,7 @@ class BankDetailController extends Controller
         );
     }
 
-    // Add / Update bank details
+   
     public function store(Request $request)
     {
         $request->validate([

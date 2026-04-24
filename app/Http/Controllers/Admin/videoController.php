@@ -56,6 +56,23 @@ class VideoController extends Controller
             'plan_id'     => 'required_if:is_free,0|nullable|exists:plans,id',
         ]);
 
+        
+        $keywords = $request->keywords;
+
+        $cleanKeywords = null;
+
+        if ($keywords) {
+            $array = explode(',', $keywords);
+
+            $array = array_map(function ($item) {
+                return strtolower(trim($item)); 
+            }, $array);
+
+            $array = array_filter($array);
+
+            $cleanKeywords = implode(',', $array);
+        }
+
         $videoPath = $request->file('video')->store('videos', 'public');
         
         $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
@@ -64,7 +81,7 @@ class VideoController extends Controller
         VideoModel::create([
             'title'       => $request->title,
             'description' => $request->description,
-            'keywords'    => $request->keywords,
+            'keywords'    => $cleanKeywords,
             'category_id' => $request->category_id,
             'subcategory_id' => $request->subcategory_id,
             'publish_at' => $request->publish_at,
@@ -97,11 +114,14 @@ class VideoController extends Controller
         $request->validate([
             'title'       => 'required|string|max:255',
             'category_id' => 'required|exists:categories,id',
+            'keywords' => 'nullable|string|max:500',
             'video'       => 'nullable|mimes:mp4,mkv,avi,webm|max:512000',
             'thumbnail'   => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'is_free'     => 'required|boolean',
             'plan_id'     => 'nullable|exists:plans,id',
         ]);
+
+
 
         if ($request->hasFile('video')) {
             if ($video->video_path && Storage::disk('public')->exists($video->video_path)) {
