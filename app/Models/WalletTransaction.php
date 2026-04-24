@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class WalletTransaction extends Model
 {
-    public $timestamps = false; // kyuki manually created_at use kar rahe ho
+    public $timestamps = false;
 
     protected $fillable = [
         'user_id',

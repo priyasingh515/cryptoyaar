@@ -59,7 +59,6 @@ class CreatorController extends Controller
         );
     }
 
-   
 
     public function add_video(Request $request)
     {

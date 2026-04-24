@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\BankDetail;
+use Illuminate\Support\facades\DB;
 
 class BankDetailController extends Controller
 {
@@ -37,6 +38,29 @@ class BankDetailController extends Controller
         return response()->json([
             'status' => true,
             'message' => 'Bank details saved successfully'
+        ]);
+    }
+
+    public function purchaseHistory()
+    {
+        $user = auth()->user();
+
+        $purchases = DB::table('user_plans')->where('user_id', $user->id)
+                        ->orderBy('id', 'desc')
+                        ->get();
+
+        if ($purchases->isEmpty()) {
+            return response()->json([
+                'status' => false,
+                'message' => 'No purchase history found',
+                'data' => []
+            ]);
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Purchase history',
+            'data' => $purchases
         ]);
     }
 }

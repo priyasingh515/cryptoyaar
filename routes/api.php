@@ -56,6 +56,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/plan-list', [HomeController::class, 'planfetch']);
     Route::post('/create-order', [PaymentController::class, 'createOrder']);
     Route::post('/verify-payment', [PaymentController::class, 'verifyPayment']);
+    Route::get('/payment_history', [BankDetailController::class, 'purchaseHistory']);
+
     Route::get('/faqs', [HomeController::class, 'faqList']);
 
     // video 
