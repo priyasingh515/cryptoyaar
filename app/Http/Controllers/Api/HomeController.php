@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
- use App\Models\Faq;
- use App\Models\Category;
- use App\Models\PlanModel;
- use App\Models\Event;
- use App\Models\VideoView;
- use App\Models\EventInterest;
+use App\Models\Faq;
+use App\Models\Category;
+use App\Models\PlanModel;
+use App\Models\Event;
+use App\Models\VideoView;
+use App\Models\EventInterest;
+use App\Models\SupCategory;
+use App\Models\supSubcategory;
+use App\Models\VideoModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -39,6 +42,7 @@ class HomeController extends Controller
             'data' => $faqs
         ]);
     }
+
     public function event()
     {
         $events = Event::all();
@@ -47,6 +51,17 @@ class HomeController extends Controller
             'status' => true,
             'message' => 'Events list',
             'data' => $events
+        ]);
+    }
+
+    public function Videos()
+    {
+        $videos = VideoModel::all();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Video List',
+            'data' => $videos
         ]);
     }
 
@@ -92,7 +107,7 @@ class HomeController extends Controller
 
     public function storeWatchTime(Request $request)
     {
-        $userId = 3; 
+        $userId = auth()->user();; 
 
         if ($request->watch_time < 30) {
             return response()->json(['status' => false]);
@@ -180,6 +195,44 @@ class HomeController extends Controller
         return response()->json([
             'status' => true,
             'data' => $categories
+        ]);
+    }
+
+    public function subcategories($category_id)
+    {
+        $subcategories = Supcategory::where('category_id', $category_id)->get();
+
+        if ($subcategories->isEmpty()) {
+            return response()->json([
+                'status' => false,
+                'message' => 'No subcategories found',
+                'data' => []
+            ]);
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Subcategories list',
+            'data' => $subcategories
+        ]);
+    }
+
+    public function Supsubcategories($category_id)
+    {
+        $supsubcategories = supSubcategory::where('sub_category_id', $category_id)->get();
+
+        if ($supsubcategories->isEmpty()) {
+            return response()->json([
+                'status' => false,
+                'message' => 'No Sup subcategories found',
+                'data' => []
+            ]);
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => ' Sup Subcategories list',
+            'data' => $supsubcategories
         ]);
     }
 

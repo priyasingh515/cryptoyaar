@@ -50,6 +50,8 @@ class CreatorController extends Controller
         ]);
     }
 
+
+    // check creator request active or not
     public function status()
     {
         return response()->json(

@@ -29,27 +29,38 @@ Route::middleware('auth:sanctum')->group(function () {
         return $request->user();
     });
 
+    // after login 
     Route::get('/profile', [ProfileController::class, 'show']);
     Route::post('/profile/update', [ProfileController::class, 'update']);
     Route::post('/whatsapp-updates', [ProfileController::class, 'whatsappUpdates']);
-    Route::get('/categoryList', [HomeController::class, 'getCategories']);
     Route::get('/expert-categories', [HomeController::class, 'expertCategories']);
     Route::post('/user-favourite', [HomeController::class, 'saveUserFavourite']);
     Route::post('/skip-category', [HomeController::class, 'skipCategory']);
+
+    // category subcategory supersub category list 
+    Route::get('/categoryList', [HomeController::class, 'getCategories']);
+    Route::get('/subCategoryList/{category_id}/', [HomeController::class, 'subcategories']);
+    Route::get('/supCategoryList/{category_id}/', [HomeController::class, 'Supsubcategories']);
     
-
-    Route::get('/bank-details', [BankDetailController::class, 'show']);
+    //  bank details add/update  list
     Route::post('/bank-details', [BankDetailController::class, 'store']);
+    Route::get('/bank-details', [BankDetailController::class, 'show']);
 
+    // become a creator
     Route::post('/become-creator', [CreatorController::class, 'submit']);
     Route::post('/create/video', [CreatorController::class, 'add_video']);
     Route::get('/creator-request-status', [CreatorController::class, 'status']);
 
+
+    //   plans plan purchase  faq
+    Route::get('/plan-list', [HomeController::class, 'planfetch']);
     Route::post('/create-order', [PaymentController::class, 'createOrder']);
     Route::post('/verify-payment', [PaymentController::class, 'verifyPayment']);
-
-    Route::get('/plan-list', [HomeController::class, 'planfetch']);
     Route::get('/faqs', [HomeController::class, 'faqList']);
+
+    // video 
+    Route::get('/video_list', [HomeController::class, 'Videos']);
+    Route::post('/watch_time', [HomeController::class, 'storeWatchTime'])->name('store-watch-time');
 
     //Meetup 
     Route::get('/events', [HomeController::class, 'event']);
@@ -65,5 +76,5 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::post('/send-otp',[AuthController::class,'sendOtp']);
 Route::post('/verify-otp',[AuthController::class,'verifyOtp']);
-Route::post('/watch_time', [HomeController::class, 'storeWatchTime'])->name('store-watch-time');
+
 
