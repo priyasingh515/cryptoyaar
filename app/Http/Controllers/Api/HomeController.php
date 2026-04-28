@@ -152,6 +152,7 @@ class HomeController extends Controller
             'category_ids.*' => 'exists:categories,id'
         ]);
 
+        /** @var \App\Models\User $user */
         $user = auth()->user();
 
         $user->categories()->sync($request->category_ids);
@@ -167,6 +168,7 @@ class HomeController extends Controller
 
     public function skipCategory()
     {
+        /** @var \App\Models\User $user */
         $user = auth()->user();
 
         $user->is_profile_completed = false; 

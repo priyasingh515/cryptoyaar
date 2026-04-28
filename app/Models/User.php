@@ -25,6 +25,7 @@ class User extends Authenticatable
         'phone',
         'referral_code',
         'referred_by',
+        'pan_no',
         'parent_id',
         'left_child',
         'right_child',

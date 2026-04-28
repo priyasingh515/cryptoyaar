@@ -15,7 +15,10 @@ class ProfileController extends Controller
 
     public function update(Request $request)
     {
-        auth()->user()->update($request->only([
+        /** @var \App\Models\User $user */
+        $user = auth()->user();
+
+        $user->update($request->only([
             'name','email','city','occupation','pan_no'
         ]));
 
@@ -27,6 +30,7 @@ class ProfileController extends Controller
 
     public function whatsappUpdates(Request $request)
     {
+        /** @var \App\Models\User $user */
         $user = auth()->user();
 
         $user->whatsapp_updates = $request->whatsapp_updates;
