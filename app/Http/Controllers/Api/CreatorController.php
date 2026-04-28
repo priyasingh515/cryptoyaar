@@ -52,11 +52,42 @@ class CreatorController extends Controller
 
 
     // check creator request active or not
+    // public function status()
+    // {
+    //     return response()->json(
+    //         auth()->user()->creatorRequest
+    //     );
+    // }
+
     public function status()
     {
-        return response()->json(
-            auth()->user()->creatorRequest
-        );
+        $user = auth()->user();
+
+        if (!$user) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Unauthorized'
+            ], 401);
+        }
+        
+
+        $request = $user->creatorRequest;
+
+        if (!$request) {
+            return response()->json([
+                'status' => false,
+                'message' => 'No request found',
+                'data' => null
+            ]);
+        }
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Creator request status',
+            'data' => [
+                'status' => $request->status,
+            ]
+        ]);
     }
 
 

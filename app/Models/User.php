@@ -66,6 +66,11 @@ class User extends Authenticatable
         return $this->hasOne(BankDetail::class);
     }
 
+    public function creatorRequest()
+    {
+        return $this->hasOne(CreatorRequest::class, 'user_id');
+    }
+
     public function referrer()
     {
         return $this->belongsTo(User::class, 'referred_by');

@@ -50,6 +50,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/become-creator', [CreatorController::class, 'submit']);
     Route::post('/create/video', [CreatorController::class, 'add_video']);
     Route::get('/creator-request-status', [CreatorController::class, 'status']);
+   
 
 
     //   plans plan purchase  faq

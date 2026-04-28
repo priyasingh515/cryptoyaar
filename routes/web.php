@@ -41,7 +41,7 @@ Route::post('/contact-enquiry', [HomeController::class, 'enquirystore'])
 Route::get('/captcha', [AuthController::class, 'captchagenerate'])
     ->name('captcha.generate');
 
-Route::get('login', [AuthController::class, 'loginForm'])->name('admin.login');
+Route::get('login', [AuthController::class, 'loginForm'])->name('login');
 Route::post('login', [AuthController::class, 'login'])->name('admin.login.submit');
 
 Route::prefix('admin')->group(function () {
