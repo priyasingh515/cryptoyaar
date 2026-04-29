@@ -10,7 +10,7 @@ use App\Models\Event;
 use App\Models\VideoView;
 use App\Models\EventInterest;
 use App\Models\SupCategory;
-use App\Models\supSubcategory;
+use App\Models\supSubCategory;
 use App\Models\VideoModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -171,7 +171,7 @@ class HomeController extends Controller
         /** @var \App\Models\User $user */
         $user = auth()->user();
 
-        $user->is_profile_completed = false; 
+        $user->is_profile_completed = true; 
         $user->save();
 
         return response()->json([
@@ -179,6 +179,36 @@ class HomeController extends Controller
             'message' => 'Skipped'
         ]);
     }
+
+    public function updateUserFavourite(Request $request)
+    {
+        $request->validate([
+            'category_ids' => 'required|array',
+            'category_ids.*' => 'exists:categories,id'
+        ]);
+
+        /** @var \App\Models\User $user */
+        $user = auth()->user();
+
+        $user->categories()->sync($request->category_ids);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Categories updated successfully'
+        ]);
+    }
+
+    public function getUserFavourite()
+    {
+        $user = auth()->user();
+
+        return response()->json([
+            'status' => true,
+            'data' => $user->categories
+        ]);
+    }
+
+    
 
 
     public function getCategories(Request $request)
@@ -221,7 +251,7 @@ class HomeController extends Controller
 
     public function Supsubcategories($category_id)
     {
-        $supsubcategories = supSubcategory::where('sub_category_id', $category_id)->get();
+        $supsubcategories = supSubCategory::where('sub_category_id', $category_id)->get();
 
         if ($supsubcategories->isEmpty()) {
             return response()->json([

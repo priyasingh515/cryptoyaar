@@ -36,6 +36,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/expert-categories', [HomeController::class, 'expertCategories']);
     Route::post('/user-favourite', [HomeController::class, 'saveUserFavourite']);
     Route::post('/skip-category', [HomeController::class, 'skipCategory']);
+    Route::post('/update-favourite-categories', [HomeController::class, 'updateUserFavourite']);
+    Route::get('/get-favourite-categories', [HomeController::class, 'getUserFavourite']);
 
     // category subcategory supersub category list 
     Route::get('/categoryList', [HomeController::class, 'getCategories']);
@@ -72,7 +74,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Refer & Earn
     Route::post('/user/referral', [ReferralController::class, 'referralUser']);
-   
     Route::post('/refund', [RefundController::class, 'refund']);
     Route::get('/my-network', [ReferralController::class, 'myNetwork']);
 });
