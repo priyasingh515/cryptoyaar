@@ -17,7 +17,8 @@ class AuthController extends Controller
             'phone' => 'required|digits:10'
         ]);
 
-        $otp = rand(100000,999999);
+        $otp = 123456;
+        // $otp = rand(100000,999999);
 
         Otp::updateOrCreate(
             ['phone' => $request->phone],

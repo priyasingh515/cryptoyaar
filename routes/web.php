@@ -86,17 +86,7 @@ Route::prefix('admin')->group(function () {
         Route::post('permissions/{permission}/toggle', [PermissionController::class, 'toggleStatus'])->name('permissions.toggle');
 
 
-        // refer & earn
-        Route::get('mlm/members', [MlmMemberController::class, 'index'])->name('mlm.members.index');
-        Route::get('mlm/members/create', [MlmMemberController::class, 'create'])->name('mlm.members.create');
-
-        // commission histroy
-        Route::get('member/commission', [MlmMemberController::class, 'commission'])->name('members.commission');
-
-        // member withdraw
-
-        Route::get('mlm/members', [MlmMemberController::class, 'index'])->name('mlm.members.index');
-        Route::get('mlm/members/create', [MlmMemberController::class, 'create'])->name('mlm.members.create');
+        
 
         //member
         Route::get('members', [MemberController::class, 'index'])->name('members.index');

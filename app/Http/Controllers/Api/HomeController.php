@@ -56,12 +56,19 @@ class HomeController extends Controller
 
     public function Videos()
     {
-        $videos = VideoModel::all();
+        $freeVideos = VideoModel::where('is_free', 'free')
+                        ->latest()
+                        ->get();
+
+        $paidVideos = VideoModel::where('is_free', 'paid')
+                        ->latest()
+                        ->get();
 
         return response()->json([
             'status' => true,
             'message' => 'Video List',
-            'data' => $videos
+            'free_videos' => $freeVideos,
+            'paid_videos' => $paidVideos,
         ]);
     }
 

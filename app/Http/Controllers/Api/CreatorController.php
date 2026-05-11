@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\CreatorRequest;
 use App\Models\VideoModel;
 use App\Models\VideoView;
+use Illuminate\Support\Facades\Auth;
 
 
 class CreatorController extends Controller
@@ -147,6 +148,23 @@ class CreatorController extends Controller
             'data'    => $video
         ]);
     }
+
+    
+
+    public function myVideos()
+    {
+        $videos = VideoModel::where('uploaded_by', 'creator')
+                    ->where('creator_id', Auth::id())
+                    ->latest()
+                    ->get();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Video list fetched successfully',
+            'data' => $videos
+        ]);
+    }
+
 
 
 

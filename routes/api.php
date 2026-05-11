@@ -63,13 +63,19 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/payment_history', [BankDetailController::class, 'purchaseHistory']);
     Route::get('/faqs', [HomeController::class, 'faqList']);
 
-    // video 
+    // video  show in home
     Route::get('/video_list', [HomeController::class, 'Videos']);
     Route::post('/watch_time', [HomeController::class, 'storeWatchTime'])->name('store-watch-time');
 
+
+    // Creator dashboard
+    Route::get('/video/list', [CreatorController::class, 'myVideos']);
+    
+
+
     //Meetup 
     Route::get('/events', [HomeController::class, 'event']);
-    Route::post('/event/interested', [AuthController::class, 'eventInterested']);
+    Route::post('/event/interested', [HomeController::class, 'eventInterested']);
     
 
     // Refer & Earn
