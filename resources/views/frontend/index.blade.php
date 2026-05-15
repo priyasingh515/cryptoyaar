@@ -19,10 +19,10 @@
 														<div class="wpb_wrapper">
 															<div class="ms-banner-wrapper ">
 																<div class="ms-banner-bg-img-1"
-																	style="background-image:url(https://demo.kamleshyadav.com/themeforest/videospire/videospire-rtl/wp-content/uploads/sites/5/2022/05/bannerbg1-1.jpg)">
+																	style="background-image:url({{asset('assets/img/bannerbg1-1.jpg')}})">
 																</div>
 																<div class="ms-banner-bg-img-2"
-																	style="background-image:url(https://demo.kamleshyadav.com/themeforest/videospire/videospire-rtl/wp-content/uploads/sites/5/2022/05/bannerbg2-1.jpg)">
+																	style="background-image:url({{asset('assets/img/bannerbg2-1.jpg')}})">
 																</div>
 																<div class="ms-banner-inner">
 																	<div class="ms-banner-heading">
@@ -105,19 +105,6 @@
 																										alt="webseries">
 																								</a>
 																								
-																								{{-- <div class="ms-prmum-tag">
-																									<span>
-																										<svg xmlns="http://www.w3.org/2000/svg"
-																											viewBox="0 0 32 32">
-																											<g>
-																												<path
-																													d="M27.488 23l-.513 2.225A1 1 0 0126 26H6a1 1 0 01-.975-.775L4.512 23zM29.975 12.225L27.95 21H4.05l-2.025-8.775a1.001 1.001 0 011.471-1.093l6.189 3.537 5.482-8.223c.179-.268.475-.434.796-.446a.99.99 0 01.826.386l6.429 8.266 5.227-3.484a1.002 1.002 0 011.53 1.057z">
-																												</path>
-																											</g>
-																										</svg>
-																									</span>
-																									<p>{{$item->title}}</p>
-																								</div> --}}
 																							</div>
 																						</div>
 																					@endforeach
@@ -175,7 +162,7 @@
 																	<div class="container-fluid">
 																		<div class="ms-top-movies-heading">
 																			<h2 class="heading">Upcoming Videos</h2><a
-																				href="https://demo.kamleshyadav.com/themeforest/videospire/upcoming-movies/"
+																				href=""
 																				class="view-all">View All <i
 																					class="fa-solid fa-chevron-right"></i></a>
 																		</div>
@@ -272,7 +259,7 @@
 													</div>
 												</div>
 											@endif
-											<div class="vc_row-full-width vc_clearfix"></div>
+											{{-- <div class="vc_row-full-width vc_clearfix"></div>
 											<div data-vc-full-width="true" data-vc-full-width-init="false"
 												data-vc-stretch-content="true"
 												class="vc_row wpb_row vc_row-fluid vc_row-no-padding">
@@ -1749,7 +1736,7 @@
 														</div>
 													</div>
 												</div>
-											</div>
+											</div> --}}
 											
 											<div class="vc_row-full-width vc_clearfix"></div>
 										</div>

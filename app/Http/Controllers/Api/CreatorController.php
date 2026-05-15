@@ -95,10 +95,10 @@ class CreatorController extends Controller
     public function add_video(Request $request)
     {
         $request->validate([
-            'title'       => 'required|string|max:255',
+            'title'       => 'nullable|string|max:255',
             'category_id' => 'required|exists:categories,id',
             'keywords' => 'nullable|string|max:500',
-            'video'       => 'required|mimes:mp4,mkv,avi,webm|max:512000',
+            'video_path'       => 'required|mimes:mp4,mkv,avi,webm|max:512000',
             'thumbnail'   => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
             'is_free'     => 'required|boolean',
             'plan_id'     => 'required_if:is_free,0|nullable|exists:plans,id',
@@ -165,6 +165,40 @@ class CreatorController extends Controller
         ]);
     }
 
+
+    
+
+    public function viewsList()
+    {
+        $videoIds = VideoModel::where('creator_id', Auth::id())
+                        ->pluck('id');
+
+        $totalViews = VideoView::whereIn('video_id', $videoIds)
+                        ->where('is_valid', 1)
+                        ->count();
+
+        $thisMonthViews = VideoView::whereIn('video_id', $videoIds)
+                            ->where('is_valid', 1)
+                            ->whereMonth('created_at', now()->month)
+                            ->whereYear('created_at', now()->year)
+                            ->count();
+
+        $lastMonthViews = VideoView::whereIn('video_id', $videoIds)
+                            ->where('is_valid', 1)
+                            ->whereMonth('created_at', now()->subMonth()->month)
+                            ->whereYear('created_at', now()->subMonth()->year)
+                            ->count();
+
+        return response()->json([
+            'status' => true,
+
+            'analytics' => [
+                'total_views' => $totalViews,
+                'this_month_views' => $thisMonthViews,
+                'last_month_views' => $lastMonthViews,
+            ]
+        ]);
+    }
 
 
 

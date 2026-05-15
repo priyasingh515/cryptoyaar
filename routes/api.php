@@ -52,6 +52,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/become-creator', [CreatorController::class, 'submit']);
     Route::post('/create/video', [CreatorController::class, 'add_video']);
     Route::get('/creator-request-status', [CreatorController::class, 'status']);
+    Route::get('/video/list', [CreatorController::class, 'myVideos']);
+    Route::get('/videoViewsList', [CreatorController::class, 'viewsList']);
    
 
 
@@ -65,13 +67,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // video  show in home
     Route::get('/video_list', [HomeController::class, 'Videos']);
-    Route::post('/watch_time', [HomeController::class, 'storeWatchTime'])->name('store-watch-time');
-
-
-    // Creator dashboard
-    Route::get('/video/list', [CreatorController::class, 'myVideos']);
-    
-
 
     //Meetup 
     Route::get('/events', [HomeController::class, 'event']);
@@ -86,5 +81,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::post('/send-otp',[AuthController::class,'sendOtp']);
 Route::post('/verify-otp',[AuthController::class,'verifyOtp']);
+    Route::post('/watch_time', [HomeController::class, 'storeWatchTime'])->name('store-watch-time');
+
 
 

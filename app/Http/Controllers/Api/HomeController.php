@@ -55,22 +55,22 @@ class HomeController extends Controller
     }
 
     public function Videos()
-    {
-        $freeVideos = VideoModel::where('is_free', 'free')
-                        ->latest()
-                        ->get();
+{
+    $freeVideos = VideoModel::where('is_free', '1')
+                    ->latest()
+                    ->get();
 
-        $paidVideos = VideoModel::where('is_free', 'paid')
-                        ->latest()
-                        ->get();
+    $paidVideos = VideoModel::where('is_free', '0')
+                    ->latest()
+                    ->get();
 
-        return response()->json([
-            'status' => true,
-            'message' => 'Video List',
-            'free_videos' => $freeVideos,
-            'paid_videos' => $paidVideos,
-        ]);
-    }
+    return response()->json([
+        'status' => true,
+        'message' => 'Video List',
+        'free_videos' => $freeVideos,
+        'paid_videos' => $paidVideos,
+    ]);
+}
 
      public function eventInterested(Request $request)
     {
@@ -114,7 +114,7 @@ class HomeController extends Controller
 
     public function storeWatchTime(Request $request)
     {
-        $userId = auth()->user();; 
+        $userId = auth()->user();
 
         if ($request->watch_time < 30) {
             return response()->json(['status' => false]);

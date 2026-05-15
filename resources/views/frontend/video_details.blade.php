@@ -11,7 +11,7 @@
                     <div class="ms-breadcrumb-container">
                         <h1>Video Details</h1>
                         <ul>
-                            <li><a href="https://demo.kamleshyadav.com/themeforest/videospire/videospire-rtl">Home</a></li>
+                            <li><a href="">Home</a></li>
                             <li>Video Details</li>
                         </ul>
                     </div>
