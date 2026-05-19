@@ -314,6 +314,38 @@ class HomeController extends Controller
         ]);
     }
 
+    private function getTeamMembers($userId, $level, &$team)
+    {
+        $members = User::where('referred_by', $userId)->get();
+
+        foreach ($members as $member) {
+
+            $team[] = [
+                'level'  => $level,
+                'name'   => $member->name,
+                'status' => 'Active',
+                'plan'   => 'Basic Plan',
+                'date'   => date('d M Y', strtotime($member->created_at)),
+            ];
+
+            $this->getTeamMembers($member->id, $level + 1, $team);
+        }
+    }
+
+    public function teamMembers()
+    {
+        $user = auth()->user();
+
+        $team = [];
+
+        $this->getTeamMembers($user->id, 1, $team);
+
+        return response()->json([
+            'status' => true,
+            'data'   => $team
+        ]);
+    }
+
 
 
 }
