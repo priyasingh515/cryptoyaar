@@ -12,6 +12,7 @@ use App\Models\EventInterest;
 use App\Models\SupCategory;
 use App\Models\supSubCategory;
 use App\Models\VideoModel;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -55,22 +56,22 @@ class HomeController extends Controller
     }
 
     public function Videos()
-{
-    $freeVideos = VideoModel::where('is_free', '1')
-                    ->latest()
-                    ->get();
+    {
+        $freeVideos = VideoModel::where('is_free', '1')
+                        ->latest()
+                        ->get();
 
-    $paidVideos = VideoModel::where('is_free', '0')
-                    ->latest()
-                    ->get();
+        $paidVideos = VideoModel::where('is_free', '0')
+                        ->latest()
+                        ->get();
 
-    return response()->json([
-        'status' => true,
-        'message' => 'Video List',
-        'free_videos' => $freeVideos,
-        'paid_videos' => $paidVideos,
-    ]);
-}
+        return response()->json([
+            'status' => true,
+            'message' => 'Video List',
+            'free_videos' => $freeVideos,
+            'paid_videos' => $paidVideos,
+        ]);
+    }
 
      public function eventInterested(Request $request)
     {
@@ -110,8 +111,6 @@ class HomeController extends Controller
         ]);
     }
 
-    
-
     public function storeWatchTime(Request $request)
     {
         $userId = auth()->user();
@@ -150,7 +149,6 @@ class HomeController extends Controller
 
         return response()->json(['status' => true]);
     }
-
 
     public function saveUserFavourite(Request $request)
     {
@@ -214,9 +212,6 @@ class HomeController extends Controller
             'data' => $user->categories
         ]);
     }
-
-    
-
 
     public function getCategories(Request $request)
     {
@@ -289,6 +284,33 @@ class HomeController extends Controller
         return response()->json([
             'status' => true,
             'data' => $videos
+        ]);
+    }
+
+    public function directMembers(Request $request)
+    {
+        $user = auth()->user();
+
+        $members = User::where('referred_by', $user->id)
+            ->select(
+                'id',
+                'name',
+                'created_at'
+            )
+            ->get()
+            ->map(function ($item) {
+
+                return [
+                    'name'   => $item->name,
+                    'status' => 'Active',
+                    'plan'   => 'Basic Plan',
+                    'date'   => date('d M Y', strtotime($item->created_at)),
+                ];
+            });
+
+        return response()->json([
+            'status' => true,
+            'data'   => $members
         ]);
     }
 

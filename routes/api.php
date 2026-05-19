@@ -38,6 +38,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/skip-category', [HomeController::class, 'skipCategory']);
     Route::post('/update-favourite-categories', [HomeController::class, 'updateUserFavourite']);
     Route::get('/get-favourite-categories', [HomeController::class, 'getUserFavourite']);
+    Route::get('/directMember', [HomeController::class, 'directMembers']);
 
     // category subcategory supersub category list 
     Route::get('/categoryList', [HomeController::class, 'getCategories']);
@@ -54,6 +55,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/creator-request-status', [CreatorController::class, 'status']);
     Route::get('/video/list', [CreatorController::class, 'myVideos']);
     Route::get('/videoViewsList', [CreatorController::class, 'viewsList']);
+    
    
 
 
